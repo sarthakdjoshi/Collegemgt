@@ -1,9 +1,8 @@
+import 'package:cms/teacher/Teacher_signin.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-import '../main.dart';
-
-class Profile_Teacher extends StatefulWidget{
+class Profile_Teacher extends StatefulWidget {
   final String u_email;
 
   const Profile_Teacher(this.u_email, {super.key});
@@ -27,11 +26,10 @@ class _Profile_TeacherState extends State<Profile_Teacher> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const MyHomePage(title: 'Login'),
+                      builder: (context) => Teacher_Siginin(),
                     ));
               },
               icon: const Icon(Icons.logout)),
-
         ],
       ),
       body: Center(

@@ -1,7 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cms/teacher/profile_Teachers.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import '../student/profile_stud.dart';
 
 class Teacher_Siginin extends StatefulWidget {
   @override
@@ -9,16 +12,55 @@ class Teacher_Siginin extends StatefulWidget {
 }
 
 class _Teacher_SigininState extends State<Teacher_Siginin> {
-  var email = TextEditingController();
+  var e_mail = TextEditingController();
   var pass = TextEditingController();
   var abc = true;
+  void singin() async {
+    try {
+      String email = e_mail.text.toString();
+      String password = pass.text.toString();
+      UserCredential userCredential = await FirebaseAuth.instance
+          .signInWithEmailAndPassword(email: email, password: password);
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => Profile_Teacher(email),
+          ));
+    } on FirebaseAuthException catch (e) {
+      print(e.code.toString());
+      if (e.code.toString() == "invalid-credential") {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text("Username or password is NotCorrect"),
+          duration: Duration(seconds: 2),
+        ));
+      }
+      if (e.code.toString() == "channel-error") {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text("Email or Password Must Be Filled"),
+          duration: Duration(seconds: 2),
+        ));
+      }
+      if (e.code.toString() == "user-disabled") {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text("Your Account Has Been Lock  Contact Your Principal"),
+          duration: Duration(seconds: 2),
+        ));
+      }
+      if (e.code.toString() == "invalid-email") {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text("Provide Valid Email "),
+          duration: Duration(seconds: 2),
+        ));
+      }
+    }
+  }
   CollectionReference users = FirebaseFirestore.instance.collection('Teachers');
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Teacher Login"),
+        title: const Text("Teacher Login"),
         centerTitle: true,
         backgroundColor: Colors.amber,
       ),
@@ -47,14 +89,14 @@ class _Teacher_SigininState extends State<Teacher_Siginin> {
                       SizedBox(
                           height: 200, child: Image.asset("assets/images/teacher.png")),
                       TextField(
-                        controller: email,
+                        controller: e_mail,
                         decoration: const InputDecoration(
                           labelText: "Enter Your Email.",
                           prefixIcon: Icon(Icons.email),
                           prefixIconColor: Colors.indigoAccent,
                         ),
                       ),
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       TextField(
                         controller: pass,
                         obscureText: abc,
@@ -72,14 +114,18 @@ class _Teacher_SigininState extends State<Teacher_Siginin> {
                         ),
                       ),
                       ElevatedButton(onPressed: () {
-                        if(email.text.toString()==data['email']){
+                        if(e_mail.text.toString()==data['email']){
                           print("true");
-                        }else{print("False");}
+                          singin();
+                        }else{ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                          content: Text(" You Are Not Teacher"),
+                          duration: Duration(seconds: 2),
+                        ));}
                       }, child: const Text("Login")),
                       CupertinoButton(
                           onPressed: () {
                             try {
-                              if (email.text == "") {
+                              if (e_mail.text == "") {
                                 ScaffoldMessenger.of(context)
                                     .showSnackBar(const SnackBar(
                                   content: Text("Enter Email "),
@@ -87,7 +133,7 @@ class _Teacher_SigininState extends State<Teacher_Siginin> {
                                 ));
                               } else {
                                 FirebaseAuth.instance
-                                    .sendPasswordResetEmail(email: email.text.toString());
+                                    .sendPasswordResetEmail(email: e_mail.text.toString());
                                 ScaffoldMessenger.of(context)
                                     .showSnackBar(const SnackBar(
                                   content: Text("Reset Link Has Sent To Your Email"),
