@@ -1,6 +1,7 @@
 import 'package:cms/FEES/Fees_Panel.dart';
 import 'package:cms/admin/Admin_Panel.dart';
 import 'package:cms/student/profile_stud.dart';
+import 'package:cms/teacher/Teacher_signin.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -197,7 +198,10 @@ class _MyHomePageState extends State<MyHomePage> {
                         print(e.code.toString());
                       }
                     },
-                    child: const Text("Forgot Password"))
+                    child: const Text("Forgot Password")),
+                CupertinoButton(child: Text("Teacher Login"), onPressed: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => Teacher_Siginin(),));                  
+                })
               ],
             )
           ],

@@ -54,6 +54,7 @@ class _Show_StudentState extends State<Show_Student> {
                           ),
                         ),
                         CupertinoButton(
+
                             child: const Text("Search"),
                             onPressed: () {
                               abc = FirebaseFirestore.instance
