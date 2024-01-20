@@ -87,7 +87,7 @@ class _Teacher_SigininState extends State<Teacher_Siginin> {
                             color: Colors.cyanAccent),
                       ),
                       SizedBox(
-                          height: 200, child: Image.asset("assets/images/teacher.png")),
+                          height: (MediaQuery.of(context).size.height)*0.3, child: Image.asset("assets/images/teacher.png")),
                       TextField(
                         controller: e_mail,
                         decoration: const InputDecoration(
