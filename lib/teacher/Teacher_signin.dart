@@ -4,9 +4,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../student/profile_stud.dart';
 
 class Teacher_Siginin extends StatefulWidget {
+  const Teacher_Siginin({super.key});
+
   @override
   State<Teacher_Siginin> createState() => _Teacher_SigininState();
 }

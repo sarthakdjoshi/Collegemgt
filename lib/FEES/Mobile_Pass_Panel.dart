@@ -50,7 +50,7 @@ class _Mobile_Pass_PanelState extends State<Mobile_Pass_Panel> {
                           width: (MediaQuery.of(context).size.width)*0.8,
                           child: TextField(
                             controller: search,
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               labelText: "Search Name"
                             ),
                           ),

@@ -201,12 +201,12 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: const Text("Forgot Password")),
                 Expanded(
                   child: CupertinoButton(
-                      child: Text("Teacher Login"),
+                      child: const Text("Teacher Login"),
                       onPressed: () {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => Teacher_Siginin(),
+                              builder: (context) => const Teacher_Siginin(),
                             ));
                       }),
                 )
