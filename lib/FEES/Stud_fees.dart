@@ -48,7 +48,7 @@ class _Stud_feesState extends State<Stud_fees> {
                     Row(
                       children: [
                         SizedBox(
-                          width: (MediaQuery.of(context).size.width)*0.9,
+                          width: (MediaQuery.of(context).size.width)*0.8,
                           child: TextField(
                             controller: search,
                             decoration: const InputDecoration(

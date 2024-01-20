@@ -49,7 +49,7 @@ class _Student_Bonafied_PanelState extends State<Student_Bonafied_Panel> {
                     Row(
                       children: [
                         SizedBox(
-                          width: (MediaQuery.of(context).size.width)*0.9,
+                          width: (MediaQuery.of(context).size.width)*0.8,
                           child: TextField(
                             controller: search,
                             decoration: const InputDecoration(

@@ -48,7 +48,7 @@ class _Show_StudentState extends State<Show_Student> {
                     Row(
                       children: [
                         SizedBox(
-                          width: (MediaQuery.of(context).size.width)*0.9,
+                          width: (MediaQuery.of(context).size.width)*0.8,
                           child: TextField(
                             controller: search,
                           ),
