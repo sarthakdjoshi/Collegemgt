@@ -439,7 +439,7 @@ class _Teacher_regState extends State<Teacher_reg> {
                   const SizedBox(
                     height: 11,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: double.infinity,
                   )
                 ],

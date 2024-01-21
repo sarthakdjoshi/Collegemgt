@@ -3,6 +3,9 @@ import 'package:cms/teacher/Teacher_signin.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import '../admin/Show_Student.dart';
 
 class Profile_Teacher extends StatefulWidget {
   final String u_email;
@@ -15,7 +18,9 @@ class Profile_Teacher extends StatefulWidget {
 
 class _Profile_TeacherState extends State<Profile_Teacher> {
   CollectionReference users = FirebaseFirestore.instance.collection('Teachers');
-  var icon=const Icon(Icons.verified);
+  var teacherof = "";
+  var icon = const Icon(Icons.verified);
+
   void sendEmailVerification() async {
     try {
       User? user = FirebaseAuth.instance.currentUser;
@@ -29,6 +34,7 @@ class _Profile_TeacherState extends State<Profile_Teacher> {
       print("Error sending email verification: $e");
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,10 +55,35 @@ class _Profile_TeacherState extends State<Profile_Teacher> {
               icon: const Icon(Icons.logout)),
         ],
       ),
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            DrawerHeader(
+              child: Text("Welcome :-${widget.u_email.toString()}"),
+            ),
+            const ListTile(
+              leading: FaIcon(FontAwesomeIcons.user),
+              title: Text("Student Attendent"),
+            ),
+            InkWell(
+              onTap: () {
+                Navigator.push(context,MaterialPageRoute(builder: (context) => Show_Student(),));
+              },
+              child: const ListTile(
+                leading: FaIcon(FontAwesomeIcons.usersViewfinder),
+                title: Text("View Student"),
+              ),
+            ),
+            const ListTile(
+              leading: FaIcon(FontAwesomeIcons.upload),
+              title: Text("Upload Assignments"),
+            ),
+          ],
+        ),
+      ),
       body: FutureBuilder<QuerySnapshot>(
         future: users.where("email", isEqualTo: widget.u_email).get(),
         builder: (context, snapshot) {
-          print(widget.u_email);
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const CircularProgressIndicator();
           } else if (snapshot.hasError) {
@@ -63,8 +94,10 @@ class _Profile_TeacherState extends State<Profile_Teacher> {
               itemCount: documents.length,
               itemBuilder: (context, index) {
                 Map<String, dynamic> data =
-                documents[index].data() as Map<String, dynamic>;
+                    documents[index].data() as Map<String, dynamic>;
                 String documentId = documents[index].id;
+                teacherof = data['Teacherof'];
+                print(teacherof);
                 return SingleChildScrollView(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -81,155 +114,165 @@ class _Profile_TeacherState extends State<Profile_Teacher> {
                           TableRow(children: [
                             const TableCell(
                                 child: Text(
-                                  "APP_ID",
-                                  style: TextStyle(fontSize: 24),
-                                )),
+                              "APP_ID",
+                              style: TextStyle(fontSize: 24),
+                            )),
                             TableCell(
                                 child: Text(
-                                  documentId,
-                                  style: const TextStyle(fontSize: 24),
-                                )),
+                              documentId,
+                              style: const TextStyle(fontSize: 24),
+                            )),
                           ]),
                           TableRow(children: [
                             const TableCell(
                                 child: Text(
-                                  "Name",
-                                  style: TextStyle(fontSize: 24),
-                                )),
+                              "Name",
+                              style: TextStyle(fontSize: 24),
+                            )),
                             TableCell(
                                 child: Text(
-                                  data['name'],
-                                  style: const TextStyle(fontSize: 24),
-                                )),
+                              data['name'],
+                              style: const TextStyle(fontSize: 24),
+                            )),
                           ]),
                           TableRow(children: [
                             const TableCell(
                                 child: Text(
-                                  "Degree",
-                                  style: TextStyle(fontSize: 24),
-                                )),
+                              "Degree",
+                              style: TextStyle(fontSize: 24),
+                            )),
                             TableCell(
                                 child: Text(
-                                  data['Degree'],
-                                  style: const TextStyle(fontSize: 24),
-                                )),
+                              data['Degree'],
+                              style: const TextStyle(fontSize: 24),
+                            )),
                           ]),
                           TableRow(children: [
                             const TableCell(
                                 child: Text(
-                                  "Email",
-                                  style: TextStyle(fontSize: 24),
-                                )),
+                              "Email",
+                              style: TextStyle(fontSize: 24),
+                            )),
                             TableCell(child: Text(data['email'])),
                           ]),
                           TableRow(children: [
                             const TableCell(
                                 child: Text(
-                                  "Gender",
-                                  style: TextStyle(fontSize: 24),
-                                )),
+                              "Gender",
+                              style: TextStyle(fontSize: 24),
+                            )),
                             TableCell(
                                 child: Text(
-                                  data['gender'],
-                                  style: const TextStyle(fontSize: 24),
-                                )),
+                              data['gender'],
+                              style: const TextStyle(fontSize: 24),
+                            )),
                           ]),
                           TableRow(children: [
                             const TableCell(
                                 child: Text(
-                                  "Teacherof",
-                                  style: TextStyle(fontSize: 24),
-                                )),
+                              "Teacherof",
+                              style: TextStyle(fontSize: 24),
+                            )),
                             TableCell(
                                 child: Text(
-                                  data['Teacherof'],
-                                  style: const TextStyle(fontSize: 24),
-                                )),
+                              data['Teacherof'],
+                              style: const TextStyle(fontSize: 24),
+                            )),
                           ]),
                           TableRow(children: [
                             const TableCell(
                                 child: Text(
-                                  "Address",
-                                  style: TextStyle(fontSize: 24),
-                                )),
+                              "Address",
+                              style: TextStyle(fontSize: 24),
+                            )),
                             TableCell(
                                 child: Text(
-                                  data['address'],
-                                  style: const TextStyle(fontSize: 24),
-                                )),
+                              data['address'],
+                              style: const TextStyle(fontSize: 24),
+                            )),
                           ]),
                           TableRow(children: [
                             const TableCell(
                                 child: Text(
-                                  "Addharcard No.",
-                                  style: TextStyle(fontSize: 24),
-                                )),
+                              "Addharcard No.",
+                              style: TextStyle(fontSize: 24),
+                            )),
                             TableCell(
                                 child: Text(
-                                  data['addharcard'],
-                                  style: const TextStyle(fontSize: 24),
-                                )),
+                              data['addharcard'],
+                              style: const TextStyle(fontSize: 24),
+                            )),
                           ]),
                           TableRow(children: [
                             const TableCell(
                                 child: Text(
-                                  "city",
-                                  style: TextStyle(fontSize: 24),
-                                )),
+                              "city",
+                              style: TextStyle(fontSize: 24),
+                            )),
                             TableCell(
                                 child: Text(
-                                  data['city'],
-                                  style: const TextStyle(fontSize: 24),
-                                )),
+                              data['city'],
+                              style: const TextStyle(fontSize: 24),
+                            )),
                           ]),
                           TableRow(children: [
                             const TableCell(
                                 child: Text(
-                                  "State",
-                                  style: TextStyle(fontSize: 24),
-                                )),
+                              "State",
+                              style: TextStyle(fontSize: 24),
+                            )),
                             TableCell(
                                 child: Text(
-                                  data['state'],
-                                  style: const TextStyle(fontSize: 24),
-                                )),
+                              data['state'],
+                              style: const TextStyle(fontSize: 24),
+                            )),
                           ]),
                           TableRow(children: [
                             const TableCell(
                                 child: Text(
-                                  "Date Of Birth",
-                                  style: TextStyle(fontSize: 24),
-                                )),
+                              "Date Of Birth",
+                              style: TextStyle(fontSize: 24),
+                            )),
                             TableCell(
                                 child: Text(
-                                  data['dob'],
-                                  style: const TextStyle(fontSize: 24),
-                                )),
+                              data['dob'],
+                              style: const TextStyle(fontSize: 24),
+                            )),
                           ]),
                           TableRow(children: [
                             const TableCell(
                                 child: Text(
-                                  "Date Of Joining",
-                                  style: TextStyle(fontSize: 24),
-                                )),
+                              "Date Of Joining",
+                              style: TextStyle(fontSize: 24),
+                            )),
                             TableCell(
                                 child: Text(
-                                  data['doj'],
-                                  style: const TextStyle(fontSize: 24),
-                                )),
+                              data['doj'],
+                              style: const TextStyle(fontSize: 24),
+                            )),
                           ]),
                           TableRow(children: [
                             const TableCell(
                                 child: Text(
-                                  "Email-Verified",
-                                  style: TextStyle(fontSize: 24),
-                                )),
+                              "Email-Verified",
+                              style: TextStyle(fontSize: 24),
+                            )),
                             TableCell(
-                                child:(FirebaseAuth.instance.currentUser?.emailVerified!=true)?CupertinoButton(child: const Text("Verify Your Email"), onPressed: (){
-                                  sendEmailVerification();
-                                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Email Verification Link Has Been Sent"),duration: Duration(seconds: 2),));
-                                }):icon
-                            ),
+                                child: (FirebaseAuth.instance.currentUser
+                                            ?.emailVerified !=
+                                        true)
+                                    ? CupertinoButton(
+                                        child: const Text("Verify Your Email"),
+                                        onPressed: () {
+                                          sendEmailVerification();
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(const SnackBar(
+                                            content: Text(
+                                                "Email Verification Link Has Been Sent"),
+                                            duration: Duration(seconds: 2),
+                                          ));
+                                        })
+                                    : icon),
                           ]),
                         ],
                       ),

@@ -51,6 +51,9 @@ class _Show_StudentState extends State<Show_Student> {
                           width: (MediaQuery.of(context).size.width) * 0.8,
                           child: TextField(
                             controller: search,
+                            decoration: const InputDecoration(
+                              labelText: "Enter Name"
+                            ),
                           ),
                         ),
                         CupertinoButton(
@@ -59,8 +62,7 @@ class _Show_StudentState extends State<Show_Student> {
                             onPressed: () {
                               abc = FirebaseFirestore.instance
                                   .collection('Students')
-                                  .where("name",
-                                      isEqualTo: search.text.trim().toString())
+                                  .startAt(search.text.toString() as Iterable<Object?>)
                                   .get();
                               setState(() {});
                               search.clear();
