@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cms/teacher/Show_Student_attendance.dart';
 import 'package:cms/teacher/Teacher_signin.dart';
 import 'package:cms/teacher/Upload_Assignmnet.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -62,9 +63,14 @@ class _Profile_TeacherState extends State<Profile_Teacher> {
             DrawerHeader(
               child: Text("Welcome :-${widget.u_email.toString()}"),
             ),
-            const ListTile(
-              leading: FaIcon(FontAwesomeIcons.user),
-              title: Text("Student Attendent"),
+            InkWell(
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context) => Show_Student_attendance(),));
+              },
+              child: const ListTile(
+                leading: FaIcon(FontAwesomeIcons.user),
+                title: Text("Student Attendent"),
+              ),
             ),
             InkWell(
               onTap: () {

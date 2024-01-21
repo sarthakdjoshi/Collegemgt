@@ -1,23 +1,19 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:cms/student/profile_stud.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
-class Show_Student extends StatefulWidget {
-  const Show_Student({super.key});
+class Show_Student_attendance extends StatefulWidget {
+  const Show_Student_attendance({super.key});
 
   @override
-  State<Show_Student> createState() => _Show_StudentState();
+  State<Show_Student_attendance> createState() =>
+      _Show_Student_attendanceState();
 }
 
-class _Show_StudentState extends State<Show_Student> {
+class _Show_Student_attendanceState extends State<Show_Student_attendance> {
   @override
-  void initState() {
-    super.initState();
-  }
-
   CollectionReference users = FirebaseFirestore.instance.collection('Students');
-  var search = TextEditingController();
   var abc = FirebaseFirestore.instance.collection('Students').get();
   String Course = 'Select Course'; //dropdown
   List<String> options = [
@@ -29,14 +25,24 @@ class _Show_StudentState extends State<Show_Student> {
     'Mca',
     'All',
   ];
+  var color = Colors.green;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Student List"),
+        title: const Text("Student Attendance"),
         centerTitle: true,
         backgroundColor: Colors.purple,
+        actions: [
+          IconButton(onPressed: (){
+            setState(() {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => Show_Student_attendance(),));
+            });
+          }, icon: Icon(Icons.refresh))
+        ],
       ),
+
       body: FutureBuilder<QuerySnapshot>(
         future: abc,
         builder: (context, snapshot) {
@@ -50,7 +56,7 @@ class _Show_StudentState extends State<Show_Student> {
               itemCount: documents.length,
               itemBuilder: (context, index) {
                 Map<String, dynamic> data =
-                documents[index].data() as Map<String, dynamic>;
+                    documents[index].data() as Map<String, dynamic>;
                 String documentId = documents[index].id;
                 return Column(
                   children: [
@@ -68,8 +74,8 @@ class _Show_StudentState extends State<Show_Student> {
                                       Course = newValue!;
                                     });
                                   },
-                                  items: options
-                                      .map<DropdownMenuItem<String>>((String value) {
+                                  items: options.map<DropdownMenuItem<String>>(
+                                      (String value) {
                                     return DropdownMenuItem<String>(
                                       value: value,
                                       child: Text(value),
@@ -83,23 +89,27 @@ class _Show_StudentState extends State<Show_Student> {
                         CupertinoButton(
                             child: const Text("Search"),
                             onPressed: () {
-                              if(Course.toString()!="Select Course") {
+                              if (Course.toString() != "Select Course") {
                                 abc = FirebaseFirestore.instance
                                     .collection('Students')
                                     .where('Course',
-                                    isEqualTo: Course.trim().toString()).get();
+                                        isEqualTo: Course.trim().toString())
+                                    .get();
 
                                 setState(() {});
                               }
-                              if(Course.toString()=="All"){
-                                abc=FirebaseFirestore.instance.collection('Students').get();
-                                setState(() {
-
-                                });
+                              if (Course.toString() == "All") {
+                                abc = FirebaseFirestore.instance
+                                    .collection('Students')
+                                    .get();
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(const SnackBar(
+                                  content: Text("Choose Any Course"),
+                                  duration: Duration(seconds: 2),
+                                ));
+                                setState(() {});
                               }
-                              else{
-                                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Choose Any Course"),duration: Duration(seconds: 2),));
-                              }
+                              setState(() {});
                             })
                       ],
                     ),
@@ -111,15 +121,40 @@ class _Show_StudentState extends State<Show_Student> {
                           backgroundImage: NetworkImage(data['photo']),
                         ),
                         trailing: CupertinoButton(
+                          color: color,
                           onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) =>
-                                      Profile_Stud(data['email']),
+                            if (data['PresentDate'] ==
+                                DateFormat('yyyy-MM-dd')
+                                    .format(DateTime.now())) {
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(const SnackBar(
+                                content: Text("Already Prenset"),
+                                duration: Duration(seconds: 2),
+                              ));
+                            } else {
+                              try {
+                                FirebaseFirestore.instance
+                                    .collection('Students')
+                                    .doc(documentId.toString())
+                                    .update({
+                                  'Present': 'Yes',
+                                  'PresentDate': DateFormat('yyyy-MM-dd')
+                                      .format(DateTime.now())
+                                });
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(SnackBar(
+                                  content: Text(
+                                      "Prenset Added For${data['name']}"),
+                                  duration: Duration(seconds: 2),
                                 ));
+
+                                print("Update");
+                              } catch (e) {
+                                print(e.toString());
+                              }
+                            }
                           },
-                          child: const Text("Show  Profile"),
+                          child: const Text("Present"),
                         ),
                       ),
                     ),
