@@ -62,8 +62,7 @@ class _Show_StudentState extends State<Show_Student> {
                             onPressed: () {
                               abc = FirebaseFirestore.instance
                                   .collection('Students')
-                                  .startAt(search.text.toString() as Iterable<Object?>)
-                                  .get();
+                                  .where('name',isEqualTo: search.text.trim().toString()).get();
                               setState(() {});
                               search.clear();
                             })
