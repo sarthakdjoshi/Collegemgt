@@ -6,6 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:intl/intl.dart';
 import 'package:uuid/uuid.dart';
 
 class Teacher_reg extends StatefulWidget {
@@ -22,7 +23,6 @@ class _Teacher_regState extends State<Teacher_reg> {
   var mobile = TextEditingController();
   var state = TextEditingController();
   var city = TextEditingController();
-  var other = TextEditingController();
   var addharcard = TextEditingController();
   var email = TextEditingController();
   var pass = TextEditingController();
@@ -31,8 +31,16 @@ class _Teacher_regState extends State<Teacher_reg> {
   var result = "Male";
   File? profilepic;
   var dob = "Choose Date of Birth";
+  var doj = "Choose Date of Join";
   String Degree = "BCA";
-  List<String> options = ['BCA', 'BCOM', 'MCA', 'MSCIT', 'MCOM', 'OTHER'];
+  String Teacher = "BCA";
+  List<String> options = [
+    'BCA',
+    'BCOM',
+    'MCA',
+    'MSCIT',
+    'MCOM',
+  ];
   var isvisible = false;
   bool sec = true;
   bool sec2 = true;
@@ -75,7 +83,8 @@ class _Teacher_regState extends State<Teacher_reg> {
         "state": state.text.trim().toString(),
         "city": city.text.trim().toString(),
         "photo": photourl.toString(),
-        "role": "teacher",
+        "doj": DateFormat('yyyy-MM-dd').format(DateTime.now()),
+        "Teacherof": Teacher.trim().toString(),
       };
       FirebaseFirestore.instance.collection("Teachers").add(Teacherdata);
       print("Saved");
@@ -278,6 +287,32 @@ class _Teacher_regState extends State<Teacher_reg> {
                   ),
                   Row(
                     children: [
+                      Text(
+                        doj,
+                        style: const TextStyle(
+                            fontSize: 15, fontWeight: FontWeight.w600),
+                      ),
+                      ElevatedButton(
+                        onPressed: () async {
+                          DateTime? picked2 = await showDatePicker(
+                              context: context,
+                              firstDate: DateTime(2000),
+                              lastDate: DateTime.now());
+                          if (picked2 != null) {
+                            doj =
+                                "${picked2.day.toString()}-${picked2.month.toString()}-${picked2.year.toString()}";
+                            setState(() {});
+                          } else {
+                            dob = "Select Date Of Join";
+                            setState(() {});
+                          }
+                        },
+                        child: const Text("Press To Choose"),
+                      )
+                    ],
+                  ),
+                  Row(
+                    children: [
                       const Expanded(
                           child: Text(
                         "Choose Degree",
@@ -304,33 +339,33 @@ class _Teacher_regState extends State<Teacher_reg> {
                       ),
                     ],
                   ),
-                  ElevatedButton(
-                      onPressed: () {
-                        if (Degree.toString() == "OTHER") {
-                          isvisible = !isvisible;
-                          setState(() {});
-                        } else {
-                          ScaffoldMessenger.of(context)
-                              .showSnackBar(const SnackBar(
-                            content:
-                                Text("You Already Selected Your Degree Above"),
-                            duration: Duration(seconds: 2),
-                          ));
-                        }
-                      },
-                      child:
-                          const Text("Press If Degree Is not Mention Below")),
-                  Visibility(
-                    visible: isvisible,
-                    child: TextField(
-                      controller: other,
-                      decoration: InputDecoration(
-                        label: const Text("Enter Other Degree"),
-                        prefixIcon: const FaIcon(FontAwesomeIcons.certificate),
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10)),
+                  Row(
+                    children: [
+                      const Expanded(
+                          child: Text(
+                        "Teacher OF",
+                        style: TextStyle(
+                            fontSize: 24, fontWeight: FontWeight.w600),
+                      )),
+                      DropdownButton<String>(
+                        value: Teacher,
+                        onChanged: (String? newvalue) {
+                          setState(() {
+                            Teacher = newvalue!;
+                          });
+                        },
+                        items: options
+                            .map<DropdownMenuItem<String>>((String value) {
+                          return DropdownMenuItem<String>(
+                              value: value,
+                              child: Text(
+                                value,
+                                style: const TextStyle(
+                                    fontSize: 24, fontWeight: FontWeight.w600),
+                              ));
+                        }).toList(),
                       ),
-                    ),
+                    ],
                   ),
                   const SizedBox(
                     height: 11,
@@ -405,47 +440,8 @@ class _Teacher_regState extends State<Teacher_reg> {
                     height: 11,
                   ),
                   SizedBox(
-                      width: double.infinity,
-                      child: ElevatedButton(
-                          onPressed: () {
-                            if (pass.text == cpass.text) {
-                              pm = true;
-                              setState(() {});
-                            }
-                            if (Degree.toString() == "OTHER" &&
-                                other.text.isNotEmpty) {
-                              dm = true;
-                              setState(() {});
-                            } else {
-                              dm = true;
-                              setState(() {});
-                            }
-
-                            if (name.text == "" ||
-                                address.text == "" ||
-                                mobile.text == "" ||
-                                state.text == "" ||
-                                city == "" ||
-                                dob == "" ||
-                                addharcard.text == "" ||
-                                email.text == "" ||
-                                dm == false ||
-                                pm == false) {
-                              ScaffoldMessenger.of(context)
-                                  .showSnackBar(const SnackBar(
-                                content: Text("Please Fill Form Correctly"),
-                                duration: Duration(seconds: 2),
-                              ));
-                            } else {
-                              other.text.toString() == city.text.toString();
-                              createuser();
-                              register();
-                            }
-                          },
-                          child: const Text(
-                            "Register",
-                            style: TextStyle(fontSize: 24),
-                          )))
+                    width: double.infinity,
+                  )
                 ],
               ),
             ),
