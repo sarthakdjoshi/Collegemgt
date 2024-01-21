@@ -137,7 +137,6 @@ class _Show_Student_attendanceState extends State<Show_Student_attendance> {
                                     .collection('Students')
                                     .doc(documentId.toString())
                                     .update({
-                                  'Present': 'Yes',
                                   'PresentDate': DateFormat('yyyy-MM-dd')
                                       .format(DateTime.now())
                                 });

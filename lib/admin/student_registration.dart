@@ -87,7 +87,6 @@ class _SecondState extends State<Second> {
         "fees": "unpaid",
         "mobilepass": "no",
         "mobile_pass_gen_date": "notgenerate",
-        "Present": "no",
         "PresentDate": "abc",
       };
       FirebaseFirestore.instance.collection("Students").add(studdata);
