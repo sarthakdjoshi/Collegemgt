@@ -37,9 +37,9 @@ class _Show_Student_attendanceState extends State<Show_Student_attendance> {
         actions: [
           IconButton(onPressed: (){
             setState(() {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => Show_Student_attendance(),));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const Show_Student_attendance(),));
             });
-          }, icon: Icon(Icons.refresh))
+          }, icon: const Icon(Icons.refresh))
         ],
       ),
 
@@ -144,7 +144,7 @@ class _Show_Student_attendanceState extends State<Show_Student_attendance> {
                                     .showSnackBar(SnackBar(
                                   content: Text(
                                       "Prenset Added For${data['name']}"),
-                                  duration: Duration(seconds: 2),
+                                  duration: const Duration(seconds: 2),
                                 ));
 
                                 print("Update");
