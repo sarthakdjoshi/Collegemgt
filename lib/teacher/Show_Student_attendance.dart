@@ -25,7 +25,14 @@ class _Show_Student_attendanceState extends State<Show_Student_attendance> {
     'Mca',
     'All',
   ];
-  var color = Colors.green;
+  var date="";
+  @override
+  void initState() {
+    date=DateFormat('yyyy-MM-dd')
+        .format(DateTime.now());
+    super.initState();
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -121,19 +128,21 @@ class _Show_Student_attendanceState extends State<Show_Student_attendance> {
                           backgroundImage: NetworkImage(data['photo']),
                         ),
                         trailing: CupertinoButton(
-                          color: color,
+                          color: Colors.green,
                           onPressed: () {
+                            print(data['PresentDate']);
                             if (data['PresentDate'] ==
                                 DateFormat('yyyy-MM-dd')
                                     .format(DateTime.now())) {
-                              ScaffoldMessenger.of(context)
+                            ScaffoldMessenger.of(context)
                                   .showSnackBar(const SnackBar(
                                 content: Text("Already Prenset"),
                                 duration: Duration(seconds: 2),
+
                               ));
-                            } else {
+                            } else{
                               try {
-                                FirebaseFirestore.instance
+                                   FirebaseFirestore.instance
                                     .collection('Students')
                                     .doc(documentId.toString())
                                     .update({
@@ -146,8 +155,7 @@ class _Show_Student_attendanceState extends State<Show_Student_attendance> {
                                       "Prenset Added For${data['name']}"),
                                   duration: const Duration(seconds: 2),
                                 ));
-
-                                print("Update");
+                                    print("Update");
                               } catch (e) {
                                 print(e.toString());
                               }

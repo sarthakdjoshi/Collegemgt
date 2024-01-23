@@ -87,12 +87,12 @@ class _SecondState extends State<Second> {
         "fees": "unpaid",
         "mobilepass": "no",
         "mobile_pass_gen_date": "notgenerate",
-        "PresentDate": "abc",
+        "PresentDate": "not",
       };
-      FirebaseFirestore.instance.collection("Students").add(studdata);
-      print("Saved");
-    } catch (e) {
-      print(e.toString());
+    FirebaseFirestore.instance.collection("Students").add(studdata);
+    print("Saved");
+  } catch (e) {
+  print(e.toString());
     }
     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         content: Text("Student Registered"), duration: Duration(seconds: 2)));

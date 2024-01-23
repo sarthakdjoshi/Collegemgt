@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cms/teacher/profile_Teachers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -46,7 +47,7 @@ class _Show_teacherState extends State<Show_teacher> {
                     ),
                     trailing: CupertinoButton(
                       onPressed: () {
-                        print(documentId);
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => Profile_Teacher(data['email']),));
                       },
                       child: const Text("Show  Profile"),
                     ),
