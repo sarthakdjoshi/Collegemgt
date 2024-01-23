@@ -4,7 +4,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-
 class Teacher_Siginin extends StatefulWidget {
   const Teacher_Siginin({super.key});
 
@@ -16,6 +15,7 @@ class _Teacher_SigininState extends State<Teacher_Siginin> {
   var e_mail = TextEditingController();
   var pass = TextEditingController();
   var abc = true;
+
   void singin() async {
     try {
       String email = e_mail.text.toString();
@@ -55,29 +55,31 @@ class _Teacher_SigininState extends State<Teacher_Siginin> {
       }
     }
   }
+
   CollectionReference users = FirebaseFirestore.instance.collection('Teachers');
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Teacher Login"),
-        centerTitle: true,
-        backgroundColor: Colors.amber,
-      ),
-      body: FutureBuilder<QuerySnapshot>(
-        future: users.get(),
-        builder: (context, snapshot) {
-          if(snapshot.connectionState==ConnectionState.waiting){
-            return const CircularProgressIndicator();
-          }else if(snapshot.hasError){
-            return  Text("Error:${snapshot.error}");
-          }else{
-            List<DocumentSnapshot> documents=snapshot.data!.docs;
-            return ListView.builder(
-              itemCount: documents.length,
-                itemBuilder:(context, index) {
-                  Map<String,dynamic>data=documents[index].data() as Map<String,dynamic>;
+        appBar: AppBar(
+          title: const Text("Teacher Login"),
+          centerTitle: true,
+          backgroundColor: Colors.amber,
+        ),
+        body: FutureBuilder<QuerySnapshot>(
+          future: users.get(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const CircularProgressIndicator();
+            } else if (snapshot.hasError) {
+              return Text("Error:${snapshot.error}");
+            } else {
+              List<DocumentSnapshot> documents = snapshot.data!.docs;
+              return ListView.builder(
+                itemCount: 1,
+                itemBuilder: (context, index) {
+                  Map<String, dynamic> data =
+                      documents[index].data() as Map<String, dynamic>;
                   return Column(
                     children: [
                       const Text(
@@ -88,7 +90,8 @@ class _Teacher_SigininState extends State<Teacher_Siginin> {
                             color: Colors.cyanAccent),
                       ),
                       SizedBox(
-                          height: (MediaQuery.of(context).size.height)*0.3, child: Image.asset("assets/images/teacher.png")),
+                          height: (MediaQuery.of(context).size.height) * 0.3,
+                          child: Image.asset("assets/images/teacher.png")),
                       TextField(
                         controller: e_mail,
                         decoration: const InputDecoration(
@@ -114,17 +117,26 @@ class _Teacher_SigininState extends State<Teacher_Siginin> {
                           prefixIconColor: Colors.cyan,
                         ),
                       ),
-                      ElevatedButton(onPressed: () {
-                        if(e_mail.text.toString()==data['email']){
-                          print("true");
-                          singin();
-                        }else{ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                          content: Text(" You Are Not Teacher"),
-                          duration: Duration(seconds: 2),
-                        ));}
-                      }, child: const Text("Login")),
+                      ElevatedButton(
+                          onPressed: () {
+                            index=0;
+                            if (e_mail.text.toString() == data['email']) {
+                              print("true");
+                              singin();
+                            } else {
+                              print(index);
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(const SnackBar(
+                                content: Text(" You Are Not Teacher"),
+                                duration: Duration(seconds: 2),
+
+                              ));
+                            }
+                          },
+                          child: const Text("Login")),
                       CupertinoButton(
                           onPressed: () {
+
                             try {
                               if (e_mail.text == "") {
                                 ScaffoldMessenger.of(context)
@@ -133,11 +145,13 @@ class _Teacher_SigininState extends State<Teacher_Siginin> {
                                   duration: Duration(seconds: 2),
                                 ));
                               } else {
-                                FirebaseAuth.instance
-                                    .sendPasswordResetEmail(email: e_mail.text.toString());
+
+                                FirebaseAuth.instance.sendPasswordResetEmail(
+                                    email: e_mail.text.toString());
                                 ScaffoldMessenger.of(context)
                                     .showSnackBar(const SnackBar(
-                                  content: Text("Reset Link Has Sent To Your Email"),
+                                  content:
+                                      Text("Reset Link Has Sent To Your Email"),
                                   duration: Duration(seconds: 2),
                                 ));
                               }
@@ -146,15 +160,12 @@ class _Teacher_SigininState extends State<Teacher_Siginin> {
                             }
                           },
                           child: const Text("Forgot Password")),
-
                     ],
                   );
                 },
-
-            );
-          }
-        },
-      )
-    );
+              );
+            }
+          },
+        ));
   }
 }

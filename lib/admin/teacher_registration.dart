@@ -303,7 +303,7 @@ class _Teacher_regState extends State<Teacher_reg> {
                                 "${picked2.day.toString()}-${picked2.month.toString()}-${picked2.year.toString()}";
                             setState(() {});
                           } else {
-                            dob = "Select Date Of Join";
+                            doj = "Select Date Of Join";
                             setState(() {});
                           }
                         },
@@ -441,7 +441,11 @@ class _Teacher_regState extends State<Teacher_reg> {
                   ),
                   const SizedBox(
                     width: double.infinity,
-                  )
+                  ),
+                  ElevatedButton(onPressed: (){
+                    register();
+                    createuser();
+                  }, child: Text("Register"))
                 ],
               ),
             ),
