@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cms/student/Pdfview.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
@@ -44,16 +45,8 @@ class _Upload_AssignmnetState extends State<Upload_Assignmnet> {
           }));
     }
   }
-  Future<File?> downloadPDF(String pdfUrl, String savePath) async {
-    try {
-      File file = File(savePath);
-      await FirebaseStorage.instance.refFromURL(pdfUrl).writeToFile(file);
-      return file;
-    } catch (e) {
-      print('Error downloading PDF: ${e.toString()}');
-      return null;
-    }
-  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -86,21 +79,16 @@ class _Upload_AssignmnetState extends State<Upload_Assignmnet> {
                         subtitle: Text(data['download link']),
                         trailing: CupertinoButton(
                           child: FaIcon(FontAwesomeIcons.download),
-                          onPressed: () async {
-                            final directory = await getApplicationDocumentsDirectory();
-                            final path=directory.path;
-                            print(path);
+                          onPressed: () {
                             String pdfUrl = data['download link'];
-                            String savePath = "$path/abc";
+                            String Name = data['name'];
 
-                            File? pdfFile = await downloadPDF(pdfUrl, savePath);
-
-                            if (pdfFile != null) {
-                              print('PDF downloaded successfully. File path: ${pdfFile.path}');
-                            } else {
-                              print('Failed to download PDF.');
-                            }
-                            },
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => PdfView(pdfUrl,Name),
+                                ));
+                          },
                         ),
                       ),
                     ),

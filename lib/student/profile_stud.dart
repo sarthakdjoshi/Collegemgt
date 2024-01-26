@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cms/FEES/Mobile_Pass.dart';
+import 'package:cms/student/Upload_Assignmnet_student.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -18,8 +19,9 @@ class Profile_Stud extends StatefulWidget {
 
 class _Profile_StudState extends State<Profile_Stud> {
   CollectionReference users = FirebaseFirestore.instance.collection('Students');
-  var icon=const Icon(Icons.verified);
-  var icon2=const FaIcon(FontAwesomeIcons.cross);
+  var icon = const Icon(Icons.verified);
+  var icon2 = const FaIcon(FontAwesomeIcons.cross);
+
   void sendEmailVerification() async {
     try {
       User? user = FirebaseAuth.instance.currentUser;
@@ -33,6 +35,7 @@ class _Profile_StudState extends State<Profile_Stud> {
       print("Error sending email verification: $e");
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,6 +55,33 @@ class _Profile_StudState extends State<Profile_Stud> {
         title: const Text("Stud_profile"),
         centerTitle: true,
         backgroundColor: Colors.yellowAccent,
+      ),
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            DrawerHeader(
+              child: Text("Welcome :-${widget.u_email.toString()}"),
+            ),
+            InkWell(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Upload_Assignmnet(),
+                    ));
+              },
+              child: Row(
+                children: [
+                  Text(
+                    "View Assignment",
+                    style: TextStyle(fontSize: 24),
+                  ),
+                  FaIcon(FontAwesomeIcons.pager),
+                ],
+              ),
+            )
+          ],
+        ),
       ),
       body: FutureBuilder<QuerySnapshot>(
         future: users.where("email", isEqualTo: widget.u_email).get(),
@@ -229,26 +259,46 @@ class _Profile_StudState extends State<Profile_Stud> {
                               style: TextStyle(fontSize: 24),
                             )),
                             TableCell(
-                                child:(FirebaseAuth.instance.currentUser?.emailVerified!=true)?CupertinoButton(child: const Text("Verify Your Email"), onPressed: (){
-                                  sendEmailVerification();
-                                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Email Verification Link Has Been Sent"),duration: Duration(seconds: 2),));
-                                }):icon
-                            ),
+                                child: (FirebaseAuth.instance.currentUser
+                                            ?.emailVerified !=
+                                        true)
+                                    ? CupertinoButton(
+                                        child: const Text("Verify Your Email"),
+                                        onPressed: () {
+                                          sendEmailVerification();
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(const SnackBar(
+                                            content: Text(
+                                                "Email Verification Link Has Been Sent"),
+                                            duration: Duration(seconds: 2),
+                                          ));
+                                        })
+                                    : icon),
                           ]),
                           TableRow(children: [
                             const TableCell(
                                 child: Text(
-                                  "Mobile Pass",
-                                  style: TextStyle(fontSize: 24),
-                                )),
-                             TableCell(
-                                child:(data['fees']=="unpaid")?const Text("You are Not Allow To Mobile Pass",style: TextStyle(fontSize: 24),):
-                                CupertinoButton(onPressed:(){
-                                  Navigator.push(context, MaterialPageRoute(builder: (context) => Mobile_Pass(data['email'])));
-                                } ,child:const Text("Show Pass"),),
-                                )
-
-
+                              "Mobile Pass",
+                              style: TextStyle(fontSize: 24),
+                            )),
+                            TableCell(
+                              child: (data['fees'] == "unpaid")
+                                  ? const Text(
+                                      "You are Not Allow To Mobile Pass",
+                                      style: TextStyle(fontSize: 24),
+                                    )
+                                  : CupertinoButton(
+                                      onPressed: () {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    Mobile_Pass(
+                                                        data['email'])));
+                                      },
+                                      child: const Text("Show Pass"),
+                                    ),
+                            )
                           ]),
                         ],
                       ),
