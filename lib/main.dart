@@ -1,9 +1,8 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cms/FEES/Fees_Panel.dart';
 import 'package:cms/admin/Admin_Panel.dart';
 import 'package:cms/student/profile_stud.dart';
 import 'package:cms/teacher/Teacher_signin.dart';
-import 'package:cms/teacher/profile_Teachers.dart';
+import 'package:cms/teacher/Upload_Assignmnet.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -214,7 +213,11 @@ class _MyHomePageState extends State<MyHomePage> {
                       }),
                 )
               ],
-            )
+              
+            ),
+            ElevatedButton(onPressed: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context) => Upload_Assignmnet(),));
+            }, child: Text("Upload"))
           ],
         )),
       ),
