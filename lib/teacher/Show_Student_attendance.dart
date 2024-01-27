@@ -25,14 +25,13 @@ class _Show_Student_attendanceState extends State<Show_Student_attendance> {
     'Mca',
     'All',
   ];
-  var date="";
+  var date = "";
+
   @override
   void initState() {
-    date=DateFormat('yyyy-MM-dd')
-        .format(DateTime.now());
+    date = DateFormat('yyyy-MM-dd').format(DateTime.now());
     super.initState();
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -42,14 +41,19 @@ class _Show_Student_attendanceState extends State<Show_Student_attendance> {
         centerTitle: true,
         backgroundColor: Colors.purple,
         actions: [
-          IconButton(onPressed: (){
-            setState(() {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => const Show_Student_attendance(),));
-            });
-          }, icon: const Icon(Icons.refresh))
+          IconButton(
+              onPressed: () {
+                setState(() {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const Show_Student_attendance(),
+                      ));
+                });
+              },
+              icon: const Icon(Icons.refresh))
         ],
       ),
-
       body: FutureBuilder<QuerySnapshot>(
         future: abc,
         builder: (context, snapshot) {
@@ -134,28 +138,29 @@ class _Show_Student_attendanceState extends State<Show_Student_attendance> {
                             if (data['PresentDate'] ==
                                 DateFormat('yyyy-MM-dd')
                                     .format(DateTime.now())) {
-                            ScaffoldMessenger.of(context)
+                              ScaffoldMessenger.of(context)
                                   .showSnackBar(const SnackBar(
                                 content: Text("Already Prenset"),
                                 duration: Duration(seconds: 2),
-
                               ));
-                            } else{
+                            } else {
                               try {
-                                   FirebaseFirestore.instance
+                                 FirebaseFirestore.instance
                                     .collection('Students')
                                     .doc(documentId.toString())
                                     .update({
-                                  'PresentDate': DateFormat('yyyy-MM-dd')
-                                      .format(DateTime.now())
+                                  'PresentDate': DateFormat('yyyy-MM-dd').format(DateTime.now())
                                 });
                                 ScaffoldMessenger.of(context)
                                     .showSnackBar(SnackBar(
-                                  content: Text(
-                                      "Prenset Added For${data['name']}"),
+                                  content:
+                                      Text("Prenset Added For${data['name']}"),
                                   duration: const Duration(seconds: 2),
                                 ));
-                                    print("Update");
+                                print("Update");
+                                setState(() {
+
+                                });
                               } catch (e) {
                                 print(e.toString());
                               }

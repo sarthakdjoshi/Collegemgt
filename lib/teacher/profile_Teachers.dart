@@ -2,11 +2,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cms/teacher/Show_Student_attendance.dart';
 import 'package:cms/teacher/Teacher_signin.dart';
 import 'package:cms/teacher/Upload_Assignmnet_Teacher.dart';
+import 'package:cms/teacher/attendance_report.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
 import '../admin/Show_Student.dart';
 
 class Profile_Teacher extends StatefulWidget {
@@ -93,6 +93,16 @@ class _Profile_TeacherState extends State<Profile_Teacher> {
               title: Text("Upload Assignments"),
             ),
             ),
+            InkWell(
+              onTap: () {
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => Attendance_Report()));
+
+              }, child: const ListTile(
+              leading: FaIcon(FontAwesomeIcons.users),
+              title: Text("Attendance Report"),
+            ),
+            ),
           ],
         ),
       ),
@@ -112,6 +122,7 @@ class _Profile_TeacherState extends State<Profile_Teacher> {
                 documents[index].data() as Map<String, dynamic>;
                 String documentId = documents[index].id;
                 teacherof = data['Teacherof'];
+
                 return SingleChildScrollView(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,

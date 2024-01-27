@@ -215,9 +215,6 @@ class _MyHomePageState extends State<MyHomePage> {
               ],
               
             ),
-            ElevatedButton(onPressed: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context) => Upload_Assignmnet(),));
-            }, child: Text("Upload")),
           ],
         )),
       ),
