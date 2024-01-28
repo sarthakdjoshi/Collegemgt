@@ -1,9 +1,10 @@
-import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class Attendance_Report extends StatefulWidget {
+  const Attendance_Report({super.key});
+
   @override
   State<Attendance_Report> createState() => _Attendance_ReportState();
 }
@@ -14,7 +15,7 @@ class _Attendance_ReportState extends State<Attendance_Report> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Student Attendance Report"),
+        title: const Text("Student Attendance Report"),
         centerTitle: true,
         backgroundColor: Colors.blue,
       ),
@@ -24,7 +25,7 @@ class _Attendance_ReportState extends State<Attendance_Report> {
             .get(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return CircularProgressIndicator();
+            return const CircularProgressIndicator();
           } else if (snapshot.hasError) {
             return Text("$snapshot.hasError");
           } else {
@@ -38,23 +39,23 @@ class _Attendance_ReportState extends State<Attendance_Report> {
                 index = index + 1;
                 return Table(
                   border: TableBorder.all(),
-                  defaultColumnWidth: FixedColumnWidth(100.0),
+                  defaultColumnWidth: const FixedColumnWidth(100.0),
                   children: [
                     TableRow(children: [
                       TableCell(
                           child: Text(
                         index.toString(),
-                        style: TextStyle(fontSize: 18),
+                        style: const TextStyle(fontSize: 18),
                       )),
                       TableCell(
                           child: Text(
                         data['name'],
-                        style: TextStyle(fontSize: 18),
+                        style: const TextStyle(fontSize: 18),
                       )),
                       TableCell(
                           child: Text(
                         data['Course'],
-                        style: TextStyle(fontSize: 24),
+                        style: const TextStyle(fontSize: 24),
                       )),
                       TableCell(child: Text(data['PresentDate']))
                     ]),

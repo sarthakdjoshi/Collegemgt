@@ -445,7 +445,7 @@ class _Teacher_regState extends State<Teacher_reg> {
                   ElevatedButton(onPressed: (){
                     register();
                     createuser();
-                  }, child: Text("Register"))
+                  }, child: const Text("Register"))
                 ],
               ),
             ),

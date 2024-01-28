@@ -86,7 +86,7 @@ class _Profile_TeacherState extends State<Profile_Teacher> {
             InkWell(
               onTap: () {
                 Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => Upload_Assignmnet()));
+                    context, MaterialPageRoute(builder: (context) => const Upload_Assignmnet()));
 
               }, child: const ListTile(
               leading: FaIcon(FontAwesomeIcons.upload),
@@ -96,7 +96,7 @@ class _Profile_TeacherState extends State<Profile_Teacher> {
             InkWell(
               onTap: () {
                 Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => Attendance_Report()));
+                    context, MaterialPageRoute(builder: (context) => const Attendance_Report()));
 
               }, child: const ListTile(
               leading: FaIcon(FontAwesomeIcons.users),

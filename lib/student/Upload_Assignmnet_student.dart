@@ -1,19 +1,14 @@
-import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cms/student/Pdfview.dart';
-import 'package:file_picker/file_picker.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:path_provider/path_provider.dart';
 
 class Upload_Assignmnet extends StatefulWidget {
   @override
   State<Upload_Assignmnet> createState() => _Upload_AssignmnetState();
 
-  Upload_Assignmnet();
+  const Upload_Assignmnet({super.key});
 }
 
 class _Upload_AssignmnetState extends State<Upload_Assignmnet> {
@@ -50,7 +45,7 @@ class _Upload_AssignmnetState extends State<Upload_Assignmnet> {
                         title: Text(data['name']),
                         subtitle: Text(data['download link']),
                         trailing: CupertinoButton(
-                          child: Icon(Icons.pages),
+                          child: const Icon(Icons.pages),
                           onPressed: () {
                             String pdfUrl = data['download link'];
                             String Name = data['name'];

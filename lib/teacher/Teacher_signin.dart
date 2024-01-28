@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cms/teacher/profile_Teachers.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -152,7 +151,7 @@ class _Teacher_SigininState extends State<Teacher_Siginin> {
                                 const MyHomePage(title: 'Login'),
                           ));
                     },
-                    child: Text("Student Login"),
+                    child: const Text("Student Login"),
                   ))
                 ],
               ),

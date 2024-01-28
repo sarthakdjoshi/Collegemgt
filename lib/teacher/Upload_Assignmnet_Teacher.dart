@@ -7,18 +7,16 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:path_provider/path_provider.dart';
 
 class Upload_Assignmnet extends StatefulWidget {
   @override
   State<Upload_Assignmnet> createState() => _Upload_AssignmnetState();
 
-  Upload_Assignmnet();
+  const Upload_Assignmnet({super.key});
 }
 
 class _Upload_AssignmnetState extends State<Upload_Assignmnet> {
   List<Map<String, dynamic>> pdfdata = [];
-
   Future<String> UploadFile(String filename, File file) async {
     final refence = FirebaseStorage.instance.ref().child("pdf/$filename.pdf");
     final uploadtask = refence.putFile(file);
@@ -33,12 +31,12 @@ class _Upload_AssignmnetState extends State<Upload_Assignmnet> {
 
     if (pickedfile != null) {
       ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text("Please Wait")));
+          .showSnackBar(const SnackBar(content: Text("Please Wait")));
       String? filename = pickedfile.files[0].name;
       File file = File(pickedfile.files[0].path!);
       final downoladlink = await UploadFile(filename, file);
       ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text("${filename} is Uploaded")));
+          .showSnackBar(SnackBar(content: Text("$filename is Uploaded")));
       FirebaseFirestore.instance.collection("Pdf").add(({
             'name': filename.toString(),
             'download link': downoladlink.toString()
@@ -78,7 +76,7 @@ class _Upload_AssignmnetState extends State<Upload_Assignmnet> {
                         title: Text(data['name']),
                         subtitle: Text(data['download link']),
                         trailing: CupertinoButton(
-                          child: FaIcon(FontAwesomeIcons.download),
+                          child: const FaIcon(FontAwesomeIcons.download),
                           onPressed: () {
                             String pdfUrl = data['download link'];
                             String Name = data['name'];
@@ -101,7 +99,7 @@ class _Upload_AssignmnetState extends State<Upload_Assignmnet> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => pickfile(),
-        child: FaIcon(FontAwesomeIcons.upload, size: 20),
+        child: const FaIcon(FontAwesomeIcons.upload, size: 20),
       ),
     );
   }

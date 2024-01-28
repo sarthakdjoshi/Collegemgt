@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cms/FEES/Fees_Reciept.dart';
 import 'package:cms/FEES/Mobile_Pass.dart';
 import 'package:cms/student/Upload_Assignmnet_student.dart';
 import 'package:flutter/cupertino.dart';
@@ -67,7 +68,7 @@ class _Profile_StudState extends State<Profile_Stud> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => Upload_Assignmnet(),
+                      builder: (context) => const Upload_Assignmnet(),
                     ));
               },
               child: const Row(
@@ -262,10 +263,21 @@ class _Profile_StudState extends State<Profile_Stud> {
                               style: TextStyle(fontSize: 24),
                             )),
                             TableCell(
-                                child: Text(
-                              data['fees'],
-                              style: const TextStyle(fontSize: 24),
-                            )),
+                                child: (data['fees'] == "unpaid")
+                                    ? Text(
+                                        data['fees'],
+                                        style: const TextStyle(fontSize: 24),
+                                      )
+                                    : CupertinoButton(
+                                        child: Text("View Reciept"),
+                                        onPressed: () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    Fees_reciept(data['email']),
+                                              ));
+                                        })),
                           ]),
                           TableRow(children: [
                             const TableCell(

@@ -1,12 +1,11 @@
 import 'package:easy_pdf_viewer/easy_pdf_viewer.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class PdfView extends StatefulWidget{
   final String url;
   final String name;
 
-  PdfView(this.url,this.name);
+  const PdfView(this.url,this.name, {super.key});
 
   @override
   State<PdfView> createState() => _PdfViewState();
@@ -35,7 +34,7 @@ class _PdfViewState extends State<PdfView> {
       ),
       body:document!=null? PDFViewer(
         document: document!,
-      ):Center(child: CircularProgressIndicator(),),
+      ):const Center(child: CircularProgressIndicator(),),
     );
   }
 }
