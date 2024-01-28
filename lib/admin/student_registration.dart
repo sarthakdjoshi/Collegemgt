@@ -7,6 +7,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:intl/intl.dart';
 import 'package:uuid/uuid.dart';
 
 import '../main.dart';
@@ -56,8 +57,11 @@ class _SecondState extends State<Second> {
         .createUserWithEmailAndPassword(email: email, password: password2);
     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         content: Text("Student Created"), duration: Duration(seconds: 2)));
-    Navigator.push(context, MaterialPageRoute(builder: (context) => const MyHomePage(title: 'Login'),));
-
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const MyHomePage(),
+        ));
   }
 
   void register() async {
@@ -91,12 +95,12 @@ class _SecondState extends State<Second> {
         "fees": "unpaid",
         "mobilepass": "no",
         "mobile_pass_gen_date": "notgenerate",
-        "PresentDate": "not",
+        "PresentDate": DateFormat('yyyy-MM-dd').format(DateTime.now()),
       };
-    FirebaseFirestore.instance.collection("Students").add(studdata);
-    print("Saved");
-  } catch (e) {
-  print(e.toString());
+      FirebaseFirestore.instance.collection("Students").add(studdata);
+      print("Saved");
+    } catch (e) {
+      print(e.toString());
     }
     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         content: Text("Student Registered"), duration: Duration(seconds: 2)));
@@ -445,7 +449,7 @@ class _SecondState extends State<Second> {
                                 State.text == "" ||
                                 City.text == "" ||
                                 Parents.text == "" ||
-                                profilepic==null||
+                                profilepic == null ||
                                 Course == "Select Course") {
                               setState(() {
                                 val = "Please Fill The Form Correctly";

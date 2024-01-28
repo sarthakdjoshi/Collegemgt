@@ -48,7 +48,7 @@ class _Profile_StudState extends State<Profile_Stud> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const MyHomePage(title: 'Login'),
+                      builder: (context) => const MyHomePage(),
                     ));
               },
               icon: const Icon(Icons.logout)),
@@ -101,7 +101,12 @@ class _Profile_StudState extends State<Profile_Stud> {
                     documents[index].data() as Map<String, dynamic>;
                 String documentId = documents[index].id;
                 var date = data['PresentDate'].toString();
-                var ldate = date.substring(date.length - 10);
+                var ldate;
+                if (date.length > 10 && date.isEmpty) {
+                  ldate = date.substring(date.length - 10);
+                } else {
+                  ldate = "No Present Added";
+                }
 
                 return SingleChildScrollView(
                   child: Column(

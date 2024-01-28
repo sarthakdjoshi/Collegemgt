@@ -148,7 +148,7 @@ class _Teacher_SigininState extends State<Teacher_Siginin> {
                           context,
                           MaterialPageRoute(
                             builder: (context) =>
-                                const MyHomePage(title: 'Login'),
+                                const MyHomePage(),
                           ));
                     },
                     child: const Text("Student Login"),

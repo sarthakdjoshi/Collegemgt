@@ -57,7 +57,7 @@ class _Teacher_regState extends State<Teacher_reg> {
     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         content: Text("User Account  Created"),
         duration: Duration(seconds: 2)));
-    Navigator.push(context, MaterialPageRoute(builder: (context) => const MyHomePage(title: 'Login'),));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => const MyHomePage(),));
   }
 
   void register() async {

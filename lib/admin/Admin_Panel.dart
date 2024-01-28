@@ -38,7 +38,7 @@ class _Admin_PanelState extends State<Admin_Panel> {
                           context,
                           MaterialPageRoute(
                               builder: (context) =>
-                                  const MyHomePage(title: 'Login')));
+                                  const MyHomePage()));
                     },
                     icon: const Icon(
                       Icons.logout,
