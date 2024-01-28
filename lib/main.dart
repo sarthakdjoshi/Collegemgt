@@ -45,10 +45,9 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  var e_mail = TextEditingController();
+ var e_mail = TextEditingController();
   var pass = TextEditingController();
   var abc = true;
-
   void singin() async {
     try {
       String email = e_mail.text.toString();
