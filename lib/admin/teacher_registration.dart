@@ -9,6 +9,8 @@ import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:uuid/uuid.dart';
 
+import '../main.dart';
+
 class Teacher_reg extends StatefulWidget {
   const Teacher_reg({super.key});
 
@@ -55,6 +57,7 @@ class _Teacher_regState extends State<Teacher_reg> {
     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         content: Text("User Account  Created"),
         duration: Duration(seconds: 2)));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => const MyHomePage(title: 'Login'),));
   }
 
   void register() async {
@@ -192,6 +195,7 @@ class _Teacher_regState extends State<Teacher_reg> {
                     height: 11,
                   ),
                   TextField(
+                    keyboardType: TextInputType.number,
                     controller: mobile,
                     maxLength: 10,
                     decoration: InputDecoration(
@@ -371,6 +375,7 @@ class _Teacher_regState extends State<Teacher_reg> {
                     height: 11,
                   ),
                   TextField(
+                    keyboardType: TextInputType.number,
                     controller: addharcard,
                     maxLength: 12,
                     decoration: InputDecoration(

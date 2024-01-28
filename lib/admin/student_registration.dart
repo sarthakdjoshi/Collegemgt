@@ -9,6 +9,8 @@ import 'package:image_picker/image_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:uuid/uuid.dart';
 
+import '../main.dart';
+
 class Second extends StatefulWidget {
   const Second({super.key});
 
@@ -54,6 +56,8 @@ class _SecondState extends State<Second> {
         .createUserWithEmailAndPassword(email: email, password: password2);
     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         content: Text("Student Created"), duration: Duration(seconds: 2)));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => const MyHomePage(title: 'Login'),));
+
   }
 
   void register() async {
@@ -441,6 +445,7 @@ class _SecondState extends State<Second> {
                                 State.text == "" ||
                                 City.text == "" ||
                                 Parents.text == "" ||
+                                profilepic==null||
                                 Course == "Select Course") {
                               setState(() {
                                 val = "Please Fill The Form Correctly";

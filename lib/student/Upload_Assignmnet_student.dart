@@ -45,7 +45,7 @@ class _Upload_AssignmnetState extends State<Upload_Assignmnet> {
                         title: Text(data['name']),
                         leading: Text(index.toString(),style: const TextStyle(fontSize: 20),),
                         trailing: CupertinoButton(
-                          child: const Icon(Icons.pages),
+                          child: const Icon(Icons.remove_red_eye_outlined),
                           onPressed: () {
                             String pdfUrl = data['download link'];
                             String Name = data['name'];
