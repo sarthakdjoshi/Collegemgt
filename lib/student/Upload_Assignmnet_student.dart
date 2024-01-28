@@ -37,13 +37,13 @@ class _Upload_AssignmnetState extends State<Upload_Assignmnet> {
                 Map<String, dynamic> data =
                     documents[index].data() as Map<String, dynamic>;
                 String documentId = documents[index].id;
-
+                    index=index+1;
                 return Column(
                   children: [
                     SingleChildScrollView(
                       child: ListTile(
                         title: Text(data['name']),
-                        subtitle: Text(data['download link']),
+                        leading: Text(index.toString(),style: TextStyle(fontSize: 20),),
                         trailing: CupertinoButton(
                           child: const Icon(Icons.pages),
                           onPressed: () {

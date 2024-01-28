@@ -149,31 +149,6 @@ class _Admin_PanelState extends State<Admin_Panel> {
                         ),
                       ),
                     ),
-                    Expanded(
-                      child: SizedBox(
-                        height: 180,
-                        width: 100,
-                        child: CupertinoButton(
-                          onPressed: () {},
-                          child: const Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              FaIcon(
-                                FontAwesomeIcons.moneyCheck,
-                                size: 65,
-                                color: Colors.red,
-                              ),
-                              Text(
-                                "Teacher Salary",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(fontSize: 25),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
                   ],
                 ),
                 Row(
@@ -199,35 +174,6 @@ class _Admin_PanelState extends State<Admin_Panel> {
                                 "Students Certificate",
                                 textAlign: TextAlign.center,
                                 style: TextStyle(fontSize: 25),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      child: SizedBox(
-                        height: 180,
-                        width: 100,
-                        child: CupertinoButton(
-                          onPressed: () {
-                            print("Teacher Subject");
-                          },
-                          child: const Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              FaIcon(
-                                FontAwesomeIcons.book,
-                                size: 65,
-                                color: Colors.red,
-                              ),
-                              Text(
-                                "Teacher Subject",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontSize: 25,
-                                ),
                               ),
                             ],
                           ),
