@@ -22,7 +22,7 @@ class _Profile_TeacherState extends State<Profile_Teacher> {
   CollectionReference users = FirebaseFirestore.instance.collection('Teachers');
   var teacherof = "";
   var icon = const Icon(Icons.verified);
-
+  @override
   void sendEmailVerification() async {
     try {
       User? user = FirebaseAuth.instance.currentUser;

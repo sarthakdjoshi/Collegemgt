@@ -70,7 +70,7 @@ class _Profile_StudState extends State<Profile_Stud> {
                       builder: (context) => Upload_Assignmnet(),
                     ));
               },
-              child: Row(
+              child: const Row(
                 children: [
                   Text(
                     "View Assignment",
@@ -99,6 +99,9 @@ class _Profile_StudState extends State<Profile_Stud> {
                 Map<String, dynamic> data =
                     documents[index].data() as Map<String, dynamic>;
                 String documentId = documents[index].id;
+                var date = data['PresentDate'].toString();
+                var ldate = date.substring(date.length - 10);
+
                 return SingleChildScrollView(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -237,6 +240,18 @@ class _Profile_StudState extends State<Profile_Stud> {
                             TableCell(
                                 child: Text(
                               data['dob'],
+                              style: const TextStyle(fontSize: 24),
+                            )),
+                          ]),
+                          TableRow(children: [
+                            const TableCell(
+                                child: Text(
+                              "Last Present Date",
+                              style: TextStyle(fontSize: 24),
+                            )),
+                            TableCell(
+                                child: Text(
+                              ldate.toString(),
                               style: const TextStyle(fontSize: 24),
                             )),
                           ]),

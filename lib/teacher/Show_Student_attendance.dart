@@ -134,8 +134,9 @@ class _Show_Student_attendanceState extends State<Show_Student_attendance> {
                         trailing: CupertinoButton(
                           color: Colors.green,
                           onPressed: () {
-                            print(data['PresentDate']);
-                            if (data['PresentDate'] ==
+                            var abc=  data['PresentDate'].toString();
+                            var bvc= abc.substring(abc.length-10);
+                            if (bvc.toString() ==
                                 DateFormat('yyyy-MM-dd')
                                     .format(DateTime.now())) {
                               ScaffoldMessenger.of(context)
@@ -145,11 +146,11 @@ class _Show_Student_attendanceState extends State<Show_Student_attendance> {
                               ));
                             } else {
                               try {
-                                 FirebaseFirestore.instance
+                                FirebaseFirestore.instance
                                     .collection('Students')
                                     .doc(documentId.toString())
                                     .update({
-                                  'PresentDate': DateFormat('yyyy-MM-dd').format(DateTime.now())
+                                  'PresentDate':"$abc,${DateFormat('yyyy-MM-dd').format(DateTime.now())}"
                                 });
                                 ScaffoldMessenger.of(context)
                                     .showSnackBar(SnackBar(

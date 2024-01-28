@@ -142,9 +142,18 @@ class _Teacher_SigininState extends State<Teacher_Siginin> {
                         }
                       },
                       child: const Text("Forgot Password")),
-                  Expanded(child: CupertinoButton(onPressed: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => const MyHomePage(title: 'Login'),));
-                  },child: Text("Student Login"),))
+                  Expanded(
+                      child: CupertinoButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                const MyHomePage(title: 'Login'),
+                          ));
+                    },
+                    child: Text("Student Login"),
+                  ))
                 ],
               ),
             ],
