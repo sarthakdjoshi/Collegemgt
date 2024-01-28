@@ -269,7 +269,7 @@ class _Profile_StudState extends State<Profile_Stud> {
                                         style: const TextStyle(fontSize: 24),
                                       )
                                     : CupertinoButton(
-                                        child: Text("View Reciept"),
+                                        child: const Text("View Reciept"),
                                         onPressed: () {
                                           Navigator.push(
                                               context,

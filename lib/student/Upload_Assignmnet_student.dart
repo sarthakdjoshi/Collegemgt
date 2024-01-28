@@ -43,7 +43,7 @@ class _Upload_AssignmnetState extends State<Upload_Assignmnet> {
                     SingleChildScrollView(
                       child: ListTile(
                         title: Text(data['name']),
-                        leading: Text(index.toString(),style: TextStyle(fontSize: 20),),
+                        leading: Text(index.toString(),style: const TextStyle(fontSize: 20),),
                         trailing: CupertinoButton(
                           child: const Icon(Icons.pages),
                           onPressed: () {
