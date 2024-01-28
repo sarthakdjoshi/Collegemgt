@@ -1,5 +1,6 @@
 import 'package:cms/FEES/Fees_Panel.dart';
 import 'package:cms/admin/Admin_Panel.dart';
+import 'package:cms/splash%20Screen.dart';
 import 'package:cms/student/profile_stud.dart';
 import 'package:cms/teacher/Teacher_signin.dart';
 import 'package:flutter/cupertino.dart';
@@ -30,7 +31,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Login'),
+      home: Splash(),
     );
   }
 }
