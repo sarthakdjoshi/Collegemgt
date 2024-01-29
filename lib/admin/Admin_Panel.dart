@@ -1,4 +1,5 @@
 import 'package:cms/FEES/Fees_Panel.dart';
+import 'package:cms/admin/Sem_progress.dart';
 import 'package:cms/admin/Show_Student.dart';
 import 'package:cms/admin/Show_Teachers.dart';
 import 'package:cms/admin/student_registration.dart';
@@ -180,6 +181,39 @@ class _Admin_PanelState extends State<Admin_Panel> {
                         ),
                       ),
                     ),
+                    Expanded(
+                      child: SizedBox(
+                        height: 180,
+                        width: 100,
+                        child: CupertinoButton(
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>  Sem_Progress()));
+                          },
+                          child: const Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              FaIcon(
+                                FontAwesomeIcons.users,
+                                size: 65,
+                                color: Colors.red,
+                              ),
+                              Text(
+                                "Student Sem Change",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontSize: 25,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+
                   ],
                 ),
                 Row(
