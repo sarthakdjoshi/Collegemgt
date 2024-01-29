@@ -196,8 +196,8 @@ class _Admin_PanelState extends State<Admin_Panel> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              FaIcon(
-                                FontAwesomeIcons.users,
+                              Icon(
+                                Icons.change_circle_outlined,
                                 size: 65,
                                 color: Colors.red,
                               ),
