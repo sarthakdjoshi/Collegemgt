@@ -72,7 +72,7 @@ class _Sem_ProgressState extends State<Sem_Progress> {
                     SingleChildScrollView(
                       child: ListTile(
                         title: Text(data['name']),
-                        subtitle: Text(data['Course']),
+                        subtitle: Text("Current Sem Is ${data['CurrentSem']}"),
                         leading: CircleAvatar(
                           backgroundImage: NetworkImage(data['photo']),
                         ),
