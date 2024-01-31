@@ -15,7 +15,7 @@ class _Transfer_certificate_panelState
     extends State<Transfer_certificate_panel> {
   CollectionReference users = FirebaseFirestore.instance.collection('Students');
   var abc = FirebaseFirestore.instance.collection('Students').get();
-  var search=TextEditingController();
+  var search = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -45,26 +45,28 @@ class _Transfer_certificate_panelState
                     Row(
                       children: [
                         SizedBox(
-                          width: (MediaQuery.of(context).size.width)*0.8,
+                          width: (MediaQuery.of(context).size.width) * 0.8,
                           child: TextField(
                             controller: search,
-                            decoration: const InputDecoration(
-                                labelText: "Search Name"
-                            ),
+                            decoration:
+                                const InputDecoration(labelText: "Search Name"),
                           ),
                         ),
                         CupertinoButton(
                             child: const Text("Search"),
                             onPressed: () {
-                              if(search.text.isEmpty){
-                                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Enter Name"),duration: Duration(seconds: 2),));
-                              }else{
-
-
+                              if (search.text.isEmpty) {
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(const SnackBar(
+                                  content: Text("Enter Name"),
+                                  duration: Duration(seconds: 2),
+                                ));
+                              } else {
                                 abc = FirebaseFirestore.instance
                                     .collection('Students')
                                     .where("name",
-                                    isEqualTo: search.text.trim().toString())
+                                        isEqualTo:
+                                            search.text.trim().toString())
                                     .get();
 
                                 setState(() {});

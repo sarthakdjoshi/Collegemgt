@@ -3,8 +3,6 @@ import 'package:cms/FEES/Mobile_Pass.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-
-
 class Mobile_Pass_Panel extends StatefulWidget {
   const Mobile_Pass_Panel({super.key});
 
@@ -15,10 +13,11 @@ class Mobile_Pass_Panel extends StatefulWidget {
 class _Mobile_Pass_PanelState extends State<Mobile_Pass_Panel> {
   CollectionReference users = FirebaseFirestore.instance.collection('Students');
   var abc = FirebaseFirestore.instance.collection('Students').get();
-  var search=TextEditingController();
+  var search = TextEditingController();
   var fees_detail = "";
   var fee_lable = true;
   var lable = "";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,37 +39,39 @@ class _Mobile_Pass_PanelState extends State<Mobile_Pass_Panel> {
               itemCount: documents.length,
               itemBuilder: (context, index) {
                 Map<String, dynamic> data =
-                documents[index].data() as Map<String, dynamic>;
+                    documents[index].data() as Map<String, dynamic>;
                 String documentId = documents[index].id;
                 return Column(
                   children: [
                     Row(
                       children: [
                         SizedBox(
-                          width: (MediaQuery.of(context).size.width)*0.8,
+                          width: (MediaQuery.of(context).size.width) * 0.8,
                           child: TextField(
                             controller: search,
-                            decoration: const InputDecoration(
-                              labelText: "Search Name"
-                            ),
+                            decoration:
+                                const InputDecoration(labelText: "Search Name"),
                           ),
                         ),
                         CupertinoButton(
                             child: const Text("Search"),
                             onPressed: () {
-                              if(search.text.isEmpty){
-                                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Enter Name"),duration: Duration(seconds: 2),));
-                              }else{
+                              if (search.text.isEmpty) {
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(const SnackBar(
+                                  content: Text("Enter Name"),
+                                  duration: Duration(seconds: 2),
+                                ));
+                              } else {
+                                abc = FirebaseFirestore.instance
+                                    .collection('Students')
+                                    .where("name",
+                                        isEqualTo:
+                                            search.text.trim().toString())
+                                    .get();
 
-
-                              abc = FirebaseFirestore.instance
-                                  .collection('Students')
-                                  .where("name",
-                                  isEqualTo: search.text.trim().toString())
-                                  .get();
-
-                              setState(() {});
-                              search.clear();
+                                setState(() {});
+                                search.clear();
                               }
                             })
                       ],
@@ -85,13 +86,12 @@ class _Mobile_Pass_PanelState extends State<Mobile_Pass_Panel> {
                         trailing: ElevatedButton(
                           onPressed: () {
                             try {
-                                      Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) =>
-                                          Mobile_Pass(data['email']),
-                                    ));
-
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        Mobile_Pass(data['email']),
+                                  ));
                             } catch (e) {
                               print(e.toString());
                             }

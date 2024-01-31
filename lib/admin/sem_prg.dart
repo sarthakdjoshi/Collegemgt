@@ -3,10 +3,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-class sem_prg extends StatefulWidget{
-  final  String name;
-  final  String id;
-   final  String photo;
+class sem_prg extends StatefulWidget {
+  final String name;
+  final String id;
+  final String photo;
+
   @override
   State<sem_prg> createState() => _sem_prgState();
 
@@ -23,6 +24,7 @@ class _sem_prgState extends State<sem_prg> {
     '5',
     '6',
   ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,7 +32,6 @@ class _sem_prgState extends State<sem_prg> {
         title: const Text("Cheange Sem"),
         centerTitle: true,
         backgroundColor: Colors.blue,
-
       ),
       body: Center(
         child: Column(
@@ -41,7 +42,10 @@ class _sem_prgState extends State<sem_prg> {
               radius: 40,
               backgroundImage: NetworkImage(widget.photo),
             ),
-            Text("Name : ${widget.name}",style: const TextStyle(fontSize: 32),),
+            Text(
+              "Name : ${widget.name}",
+              style: const TextStyle(fontSize: 32),
+            ),
             DropdownButton<String>(
               value: Sem,
               onChanged: (String? newValue) {
@@ -49,29 +53,33 @@ class _sem_prgState extends State<sem_prg> {
                   Sem = newValue!;
                 });
               },
-              items: SemOption
-                  .map<DropdownMenuItem<String>>((String value) {
+              items: SemOption.map<DropdownMenuItem<String>>((String value) {
                 return DropdownMenuItem<String>(
                   value: value,
-                  child: Text(value,style: const TextStyle(fontSize: 30),),
+                  child: Text(
+                    value,
+                    style: const TextStyle(fontSize: 30),
+                  ),
                 );
               }).toList(),
             ),
-            CupertinoButton(child: const Text("Change Sem"), onPressed: (){
-              FirebaseFirestore.instance
-                  .collection("Students")
-                  .doc(widget.id)
-                  .update({
-                'CurrentSem': Sem.toString(),
-                "fees": "unpaid",
-                "mobilepass": "no",
-                "mobile_pass_gen_date": "notgenerate",
-                "PresentDate": DateFormat('yyyy-MM-dd').format(DateTime.now()),
-              });
-              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Semester Change")));
-
-            }),
-
+            CupertinoButton(
+                child: const Text("Change Sem"),
+                onPressed: () {
+                  FirebaseFirestore.instance
+                      .collection("Students")
+                      .doc(widget.id)
+                      .update({
+                    'CurrentSem': Sem.toString(),
+                    "fees": "unpaid",
+                    "mobilepass": "no",
+                    "mobile_pass_gen_date": "notgenerate",
+                    "PresentDate":
+                        DateFormat('yyyy-MM-dd').format(DateTime.now()),
+                  });
+                  ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text("Semester Change")));
+                }),
           ],
         ),
       ),

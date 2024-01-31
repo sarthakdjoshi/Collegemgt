@@ -38,8 +38,7 @@ class _Admin_PanelState extends State<Admin_Panel> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) =>
-                                  const MyHomePage()));
+                              builder: (context) => const MyHomePage()));
                     },
                     icon: const Icon(
                       Icons.logout,
@@ -129,7 +128,11 @@ class _Admin_PanelState extends State<Admin_Panel> {
                         width: 100,
                         child: CupertinoButton(
                           onPressed: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => const Stud_fees(),));
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const Stud_fees(),
+                                ));
                           },
                           child: const Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -160,7 +163,11 @@ class _Admin_PanelState extends State<Admin_Panel> {
                         width: 100,
                         child: CupertinoButton(
                           onPressed: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => const Fees_panel(),));
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const Fees_panel(),
+                                ));
                           },
                           child: const Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -190,7 +197,8 @@ class _Admin_PanelState extends State<Admin_Panel> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) =>  const Sem_Progress()));
+                                    builder: (context) =>
+                                        const Sem_Progress()));
                           },
                           child: const Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -213,7 +221,6 @@ class _Admin_PanelState extends State<Admin_Panel> {
                         ),
                       ),
                     ),
-
                   ],
                 ),
                 Row(
@@ -227,7 +234,8 @@ class _Admin_PanelState extends State<Admin_Panel> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => const Show_Student()));
+                                    builder: (context) =>
+                                        const Show_Student()));
                           },
                           child: const Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -257,7 +265,8 @@ class _Admin_PanelState extends State<Admin_Panel> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => const Show_teacher()));
+                                    builder: (context) =>
+                                        const Show_teacher()));
                           },
                           child: const Column(
                             crossAxisAlignment: CrossAxisAlignment.center,

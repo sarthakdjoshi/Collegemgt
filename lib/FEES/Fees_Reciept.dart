@@ -1,7 +1,5 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-
 
 class Fees_reciept extends StatefulWidget {
   final String u_email;
@@ -207,5 +205,4 @@ class _Fees_recieptState extends State<Fees_reciept> {
       ),
     );
   }
-
 }

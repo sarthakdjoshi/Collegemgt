@@ -134,8 +134,8 @@ class _Show_Student_attendanceState extends State<Show_Student_attendance> {
                         trailing: CupertinoButton(
                           color: Colors.green,
                           onPressed: () {
-                            var abc=  data['PresentDate'].toString();
-                            var bvc= abc.substring(abc.length-10);
+                            var abc = data['PresentDate'].toString();
+                            var bvc = abc.substring(abc.length - 10);
                             if (bvc.toString() ==
                                 DateFormat('yyyy-MM-dd')
                                     .format(DateTime.now())) {
@@ -150,7 +150,8 @@ class _Show_Student_attendanceState extends State<Show_Student_attendance> {
                                     .collection('Students')
                                     .doc(documentId.toString())
                                     .update({
-                                  'PresentDate':"$abc,${DateFormat('yyyy-MM-dd').format(DateTime.now())}"
+                                  'PresentDate':
+                                      "$abc,${DateFormat('yyyy-MM-dd').format(DateTime.now())}"
                                 });
                                 ScaffoldMessenger.of(context)
                                     .showSnackBar(SnackBar(
@@ -159,9 +160,7 @@ class _Show_Student_attendanceState extends State<Show_Student_attendance> {
                                   duration: const Duration(seconds: 2),
                                 ));
                                 print("Update");
-                                setState(() {
-
-                                });
+                                setState(() {});
                               } catch (e) {
                                 print(e.toString());
                               }

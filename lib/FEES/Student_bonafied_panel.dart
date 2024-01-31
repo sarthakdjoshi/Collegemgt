@@ -3,10 +3,8 @@ import 'package:cms/FEES/Stuent_bonafied.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-
-class Student_Bonafied_Panel extends StatefulWidget{
+class Student_Bonafied_Panel extends StatefulWidget {
   const Student_Bonafied_Panel({super.key});
-
 
   @override
   State<Student_Bonafied_Panel> createState() => _Student_Bonafied_PanelState();
@@ -15,7 +13,7 @@ class Student_Bonafied_Panel extends StatefulWidget{
 class _Student_Bonafied_PanelState extends State<Student_Bonafied_Panel> {
   CollectionReference users = FirebaseFirestore.instance.collection('Students');
   var abc = FirebaseFirestore.instance.collection('Students').get();
-  var search=TextEditingController();
+  var search = TextEditingController();
   var fees_detail = "";
   var fee_lable = true;
   var lable = "";
@@ -28,7 +26,7 @@ class _Student_Bonafied_PanelState extends State<Student_Bonafied_Panel> {
         centerTitle: true,
         backgroundColor: Colors.purple,
       ),
-      body:   FutureBuilder<QuerySnapshot>(
+      body: FutureBuilder<QuerySnapshot>(
         future: abc,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
@@ -41,7 +39,7 @@ class _Student_Bonafied_PanelState extends State<Student_Bonafied_Panel> {
               itemCount: documents.length,
               itemBuilder: (context, index) {
                 Map<String, dynamic> data =
-                documents[index].data() as Map<String, dynamic>;
+                    documents[index].data() as Map<String, dynamic>;
                 String documentId = documents[index].id;
                 fees_detail = data['fees'];
                 return Column(
@@ -49,26 +47,28 @@ class _Student_Bonafied_PanelState extends State<Student_Bonafied_Panel> {
                     Row(
                       children: [
                         SizedBox(
-                          width: (MediaQuery.of(context).size.width)*0.8,
+                          width: (MediaQuery.of(context).size.width) * 0.8,
                           child: TextField(
                             controller: search,
-                            decoration: const InputDecoration(
-                                labelText: "Search Name"
-                            ),
+                            decoration:
+                                const InputDecoration(labelText: "Search Name"),
                           ),
                         ),
                         CupertinoButton(
                             child: const Text("Search"),
                             onPressed: () {
-                              if(search.text.isEmpty){
-                                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Enter Name"),duration: Duration(seconds: 2),));
-                              }else{
-
-
+                              if (search.text.isEmpty) {
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(const SnackBar(
+                                  content: Text("Enter Name"),
+                                  duration: Duration(seconds: 2),
+                                ));
+                              } else {
                                 abc = FirebaseFirestore.instance
                                     .collection('Students')
                                     .where("name",
-                                    isEqualTo: search.text.trim().toString())
+                                        isEqualTo:
+                                            search.text.trim().toString())
                                     .get();
 
                                 setState(() {});
@@ -85,7 +85,6 @@ class _Student_Bonafied_PanelState extends State<Student_Bonafied_Panel> {
                           backgroundImage: NetworkImage(data['photo']),
                         ),
                         trailing: ElevatedButton(
-
                           onPressed: () async {
                             print(documentId);
                             try {
@@ -94,13 +93,15 @@ class _Student_Bonafied_PanelState extends State<Student_Bonafied_Panel> {
                                   'fees': 'paid',
                                 });
                                 print('Fees updated successfully!');
-
-
-                              } else if(data['fees'] == "paid") {
+                              } else if (data['fees'] == "paid") {
                                 print("reciept");
-                                Navigator.push(context, MaterialPageRoute(builder: (context) => Student_Bonafied(data['email']),));
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          Student_Bonafied(data['email']),
+                                    ));
                               }
-
                             } catch (e) {
                               print('Error updating user name: $e');
                             }

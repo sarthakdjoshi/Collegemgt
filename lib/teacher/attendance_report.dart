@@ -11,6 +11,7 @@ class Attendance_Report extends StatefulWidget {
 
 class _Attendance_ReportState extends State<Attendance_Report> {
   var date = DateFormat('yyyy-MM-dd').format(DateTime.now());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,9 +21,7 @@ class _Attendance_ReportState extends State<Attendance_Report> {
         backgroundColor: Colors.blue,
       ),
       body: FutureBuilder<QuerySnapshot>(
-        future: FirebaseFirestore.instance
-            .collection("Students")
-            .get(),
+        future: FirebaseFirestore.instance.collection("Students").get(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const CircularProgressIndicator();
@@ -66,7 +65,6 @@ class _Attendance_ReportState extends State<Attendance_Report> {
           }
         },
       ),
-
-  );
+    );
   }
 }

@@ -1,4 +1,3 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cms/student/Pdfview.dart';
 import 'package:flutter/cupertino.dart';
@@ -12,8 +11,6 @@ class Upload_Assignmnet extends StatefulWidget {
 }
 
 class _Upload_AssignmnetState extends State<Upload_Assignmnet> {
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,13 +34,16 @@ class _Upload_AssignmnetState extends State<Upload_Assignmnet> {
                 Map<String, dynamic> data =
                     documents[index].data() as Map<String, dynamic>;
                 String documentId = documents[index].id;
-                    index=index+1;
+                index = index + 1;
                 return Column(
                   children: [
                     SingleChildScrollView(
                       child: ListTile(
                         title: Text(data['name']),
-                        leading: Text(index.toString(),style: const TextStyle(fontSize: 20),),
+                        leading: Text(
+                          index.toString(),
+                          style: const TextStyle(fontSize: 20),
+                        ),
                         trailing: CupertinoButton(
                           child: const Icon(Icons.remove_red_eye_outlined),
                           onPressed: () {
@@ -53,7 +53,7 @@ class _Upload_AssignmnetState extends State<Upload_Assignmnet> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => PdfView(pdfUrl,Name),
+                                  builder: (context) => PdfView(pdfUrl, Name),
                                 ));
                           },
                         ),

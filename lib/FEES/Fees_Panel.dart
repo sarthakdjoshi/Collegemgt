@@ -1,6 +1,6 @@
 import 'package:cms/FEES/Mobile_Pass_Panel.dart';
 import 'package:cms/FEES/Stud_fees.dart';
-import 'package:cms/FEES/Student_binafied_panel.dart';
+import 'package:cms/FEES/Student_bonafied_panel.dart';
 import 'package:cms/FEES/Transfer_Certificate_panel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -34,8 +34,13 @@ class _Fees_panelState extends State<Fees_panel> {
                   width: 100,
                   child: CupertinoButton(
                     onPressed: () {
-                     Navigator.push(context,MaterialPageRoute(builder: (context) => const Student_Bonafied_Panel(),));
-                      },
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                const Student_Bonafied_Panel(),
+                          ));
+                    },
                     child: const Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -98,7 +103,12 @@ class _Fees_panelState extends State<Fees_panel> {
                   width: 100,
                   child: CupertinoButton(
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => const Transfer_certificate_panel(),));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                const Transfer_certificate_panel(),
+                          ));
                     },
                     child: const Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -125,7 +135,11 @@ class _Fees_panelState extends State<Fees_panel> {
                   width: 100,
                   child: CupertinoButton(
                     onPressed: () {
-                     Navigator.push(context, MaterialPageRoute(builder: (context) => const Mobile_Pass_Panel(),));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const Mobile_Pass_Panel(),
+                          ));
                     },
                     child: const Column(
                       crossAxisAlignment: CrossAxisAlignment.center,

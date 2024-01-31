@@ -39,15 +39,15 @@ class MyApp extends StatelessWidget {
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
 
-
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
- var e_mail = TextEditingController();
+  var e_mail = TextEditingController();
   var pass = TextEditingController();
   var abc = true;
+
   void singin() async {
     try {
       String email = e_mail.text.toString();
@@ -87,7 +87,6 @@ class _MyHomePageState extends State<MyHomePage> {
       }
     }
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -211,7 +210,6 @@ class _MyHomePageState extends State<MyHomePage> {
                       }),
                 )
               ],
-
             ),
           ],
         )),

@@ -17,6 +17,7 @@ class Upload_Assignmnet extends StatefulWidget {
 
 class _Upload_AssignmnetState extends State<Upload_Assignmnet> {
   List<Map<String, dynamic>> pdfdata = [];
+
   Future<String> UploadFile(String filename, File file) async {
     final refence = FirebaseStorage.instance.ref().child("pdf/$filename.pdf");
     final uploadtask = refence.putFile(file);
@@ -43,7 +44,6 @@ class _Upload_AssignmnetState extends State<Upload_Assignmnet> {
           }));
     }
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -84,7 +84,7 @@ class _Upload_AssignmnetState extends State<Upload_Assignmnet> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => PdfView(pdfUrl,Name),
+                                  builder: (context) => PdfView(pdfUrl, Name),
                                 ));
                           },
                         ),

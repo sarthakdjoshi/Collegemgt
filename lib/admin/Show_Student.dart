@@ -29,6 +29,7 @@ class _Show_StudentState extends State<Show_Student> {
     'Mca',
     'All',
   ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,7 +51,7 @@ class _Show_StudentState extends State<Show_Student> {
               itemCount: documents.length,
               itemBuilder: (context, index) {
                 Map<String, dynamic> data =
-                documents[index].data() as Map<String, dynamic>;
+                    documents[index].data() as Map<String, dynamic>;
                 String documentId = documents[index].id;
                 return Column(
                   children: [
@@ -68,8 +69,8 @@ class _Show_StudentState extends State<Show_Student> {
                                       Course = newValue!;
                                     });
                                   },
-                                  items: options
-                                      .map<DropdownMenuItem<String>>((String value) {
+                                  items: options.map<DropdownMenuItem<String>>(
+                                      (String value) {
                                     return DropdownMenuItem<String>(
                                       value: value,
                                       child: Text(value),
@@ -83,22 +84,26 @@ class _Show_StudentState extends State<Show_Student> {
                         CupertinoButton(
                             child: const Text("Search"),
                             onPressed: () {
-                              if(Course.toString()!="Select Course") {
+                              if (Course.toString() != "Select Course") {
                                 abc = FirebaseFirestore.instance
                                     .collection('Students')
                                     .where('Course',
-                                    isEqualTo: Course.trim().toString()).get();
+                                        isEqualTo: Course.trim().toString())
+                                    .get();
 
                                 setState(() {});
                               }
-                              if(Course.toString()=="All"){
-                                abc=FirebaseFirestore.instance.collection('Students').get();
-                                setState(() {
-
-                                });
-                              }
-                              else{
-                                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Choose Any Course"),duration: Duration(seconds: 2),));
+                              if (Course.toString() == "All") {
+                                abc = FirebaseFirestore.instance
+                                    .collection('Students')
+                                    .get();
+                                setState(() {});
+                              } else {
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(const SnackBar(
+                                  content: Text("Choose Any Course"),
+                                  duration: Duration(seconds: 2),
+                                ));
                               }
                             })
                       ],

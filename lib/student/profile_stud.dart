@@ -80,7 +80,6 @@ class _Profile_StudState extends State<Profile_Stud> {
                     "View Assignment",
                     style: TextStyle(fontSize: 28),
                   ),
-                  
                 ],
               ),
             ),
@@ -89,7 +88,7 @@ class _Profile_StudState extends State<Profile_Stud> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) =>  Id_Card(widget.u_email),
+                      builder: (context) => Id_Card(widget.u_email),
                     ));
               },
               child: const Row(
@@ -100,7 +99,6 @@ class _Profile_StudState extends State<Profile_Stud> {
                     "ID Card",
                     style: TextStyle(fontSize: 28),
                   ),
-                
                 ],
               ),
             ),

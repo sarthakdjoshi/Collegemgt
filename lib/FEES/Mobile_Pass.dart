@@ -15,7 +15,6 @@ class _Mobile_PassState extends State<Mobile_Pass> {
   CollectionReference users = FirebaseFirestore.instance.collection('Students');
   var abc = FirebaseFirestore.instance.collection('Students').get();
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

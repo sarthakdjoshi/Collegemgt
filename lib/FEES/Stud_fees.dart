@@ -13,7 +13,7 @@ class Stud_fees extends StatefulWidget {
 class _Stud_feesState extends State<Stud_fees> {
   CollectionReference users = FirebaseFirestore.instance.collection('Students');
   var abc = FirebaseFirestore.instance.collection('Students').get();
-  var search=TextEditingController();
+  var search = TextEditingController();
   var fees_detail = "";
   var fee_lable = true;
   var lable = "";
@@ -43,31 +43,32 @@ class _Stud_feesState extends State<Stud_fees> {
                 String documentId = documents[index].id;
                 fees_detail = data['fees'];
                 return Column(
-
                   children: [
                     Row(
                       children: [
                         SizedBox(
-                          width: (MediaQuery.of(context).size.width)*0.8,
+                          width: (MediaQuery.of(context).size.width) * 0.8,
                           child: TextField(
                             controller: search,
-                            decoration: const InputDecoration(
-                                labelText: "Search Name"
-                            ),
+                            decoration:
+                                const InputDecoration(labelText: "Search Name"),
                           ),
                         ),
                         CupertinoButton(
                             child: const Text("Search"),
                             onPressed: () {
-                              if(search.text.isEmpty){
-                                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Enter Name"),duration: Duration(seconds: 2),));
-                              }else{
-
-
+                              if (search.text.isEmpty) {
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(const SnackBar(
+                                  content: Text("Enter Name"),
+                                  duration: Duration(seconds: 2),
+                                ));
+                              } else {
                                 abc = FirebaseFirestore.instance
                                     .collection('Students')
                                     .where("name",
-                                    isEqualTo: search.text.trim().toString())
+                                        isEqualTo:
+                                            search.text.trim().toString())
                                     .get();
 
                                 setState(() {});
@@ -87,19 +88,22 @@ class _Stud_feesState extends State<Stud_fees> {
                           onPressed: () async {
                             print(documentId);
                             try {
-                                if (data['fees'] == "unpaid") {
+                              if (data['fees'] == "unpaid") {
                                 await users.doc(documentId).update({
                                   'fees': 'paid',
-                                  'mobilepass':'yes',
+                                  'mobilepass': 'yes',
                                 });
                                 print('Fees updated successfully!');
-
-                              } else if(data['fees'] == "paid") {
+                              } else if (data['fees'] == "paid") {
                                 print("reciept");
-                                Navigator.push(context, MaterialPageRoute(builder: (context) => Fees_reciept(data['email']),));
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          Fees_reciept(data['email']),
+                                    ));
                               }
-
-                              } catch (e) {
+                            } catch (e) {
                               print('Error updating user name: $e');
                             }
                           },
