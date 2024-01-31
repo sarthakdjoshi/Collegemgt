@@ -2,11 +2,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cms/admin/sem_prg.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
-import '../student/profile_stud.dart';
 
 class Sem_Progress extends StatefulWidget {
+  const Sem_Progress({super.key});
+
   @override
   State<Sem_Progress> createState() => _Sem_ProgressState();
 }
@@ -20,7 +20,7 @@ class _Sem_ProgressState extends State<Sem_Progress> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Sem_Progerss"),
+        title: const Text("Sem_Progerss"),
         centerTitle: true,
         backgroundColor: Colors.blue,
       ),
@@ -50,7 +50,7 @@ class _Sem_ProgressState extends State<Sem_Progress> {
                               Expanded(
                                 child: TextField(
                                   controller: search,
-                                  decoration: InputDecoration(
+                                  decoration: const InputDecoration(
                                     labelText: "Enter Name"
                                   ),
                                 )

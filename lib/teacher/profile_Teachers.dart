@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cms/teacher/Idcard_teacher.dart';
 import 'package:cms/teacher/Show_Student_attendance.dart';
 import 'package:cms/teacher/Teacher_signin.dart';
 import 'package:cms/teacher/Upload_Assignmnet_Teacher.dart';
@@ -71,6 +72,15 @@ class _Profile_TeacherState extends State<Profile_Teacher> {
               child: const ListTile(
                 leading: FaIcon(FontAwesomeIcons.user),
                 title: Text("Student Attendent"),
+              ),
+            ),
+            InkWell(
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context) =>Id_Card_Teacher(widget.u_email),));
+              },
+              child: const ListTile(
+                leading: FaIcon(FontAwesomeIcons.idBadge),
+                title: Text("Id Card"),
               ),
             ),
             InkWell(

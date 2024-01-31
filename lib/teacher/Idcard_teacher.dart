@@ -1,28 +1,28 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-class Id_Card extends StatefulWidget{
+class Id_Card_Teacher extends StatefulWidget{
 final String u_mail;
 
-const Id_Card(this.u_mail, {super.key});
+const Id_Card_Teacher(this.u_mail, {super.key});
 
   @override
-  State<Id_Card> createState() => _Id_CardState();
+  State<Id_Card_Teacher> createState() => _Id_Card_TeacherState();
 }
 
-class _Id_CardState extends State<Id_Card> {
+class _Id_Card_TeacherState extends State<Id_Card_Teacher> {
 
   @override
   Widget build(BuildContext context) {
    return Scaffold(
      appBar:AppBar(
-       title: const Text("Id Card"),
+       title: const Text("Teacher's Id Card"),
        centerTitle: true,
        backgroundColor: Colors.indigoAccent,
 
      ),
      body:  FutureBuilder<QuerySnapshot>(
-       future: FirebaseFirestore.instance.collection('Students').where("email",isEqualTo: widget.u_mail).get(),
+       future: FirebaseFirestore.instance.collection('Teachers').where("email",isEqualTo: widget.u_mail).get(),
        builder: (context, snapshot) {
          if (snapshot.connectionState == ConnectionState.waiting) {
            return const CircularProgressIndicator();
@@ -76,12 +76,12 @@ class _Id_CardState extends State<Id_Card> {
                            ),
                            const SizedBox(height: 16.0),
                            Text(
-                             'Stream: ${data['Course']}',
+                             'Stream: ${data['Teacherof']}',
                              style: const TextStyle(fontSize: 16.0),
                            ),
                          const SizedBox(height: 16.0),
                            Text(
-                             'CurrentSem: ${data['CurrentSem']}',
+                             'Degree: ${data['Degree']}',
                              style: const TextStyle(fontSize: 16.0),
                            ),
                          ],

@@ -124,7 +124,7 @@ class _Profile_StudState extends State<Profile_Stud> {
                     documents[index].data() as Map<String, dynamic>;
                 String documentId = documents[index].id;
                 var date = data['PresentDate'].toString();
-                var ldate;
+                String ldate;
                 if (date.length > 10 || date.isNotEmpty) {
                   ldate = date.substring(date.length - 10);
                 } else {

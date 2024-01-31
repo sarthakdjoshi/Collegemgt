@@ -10,7 +10,7 @@ class sem_prg extends StatefulWidget{
   @override
   State<sem_prg> createState() => _sem_prgState();
 
-  sem_prg(this.name, this.id, this.photo);
+  const sem_prg(this.name, this.id, this.photo, {super.key});
 }
 
 class _sem_prgState extends State<sem_prg> {
@@ -27,7 +27,7 @@ class _sem_prgState extends State<sem_prg> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Cheange Sem"),
+        title: const Text("Cheange Sem"),
         centerTitle: true,
         backgroundColor: Colors.blue,
 
@@ -41,7 +41,7 @@ class _sem_prgState extends State<sem_prg> {
               radius: 40,
               backgroundImage: NetworkImage(widget.photo),
             ),
-            Text("Name : ${widget.name}",style: TextStyle(fontSize: 32),),
+            Text("Name : ${widget.name}",style: const TextStyle(fontSize: 32),),
             DropdownButton<String>(
               value: Sem,
               onChanged: (String? newValue) {
@@ -53,11 +53,11 @@ class _sem_prgState extends State<sem_prg> {
                   .map<DropdownMenuItem<String>>((String value) {
                 return DropdownMenuItem<String>(
                   value: value,
-                  child: Text(value,style: TextStyle(fontSize: 30),),
+                  child: Text(value,style: const TextStyle(fontSize: 30),),
                 );
               }).toList(),
             ),
-            CupertinoButton(child: Text("Change Sem"), onPressed: (){
+            CupertinoButton(child: const Text("Change Sem"), onPressed: (){
               FirebaseFirestore.instance
                   .collection("Students")
                   .doc(widget.id)
@@ -68,7 +68,7 @@ class _sem_prgState extends State<sem_prg> {
                 "mobile_pass_gen_date": "notgenerate",
                 "PresentDate": DateFormat('yyyy-MM-dd').format(DateTime.now()),
               });
-              ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Semester Change")));
+              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Semester Change")));
 
             }),
 

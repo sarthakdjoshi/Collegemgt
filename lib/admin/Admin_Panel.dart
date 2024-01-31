@@ -190,7 +190,7 @@ class _Admin_PanelState extends State<Admin_Panel> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) =>  Sem_Progress()));
+                                    builder: (context) =>  const Sem_Progress()));
                           },
                           child: const Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
