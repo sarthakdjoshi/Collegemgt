@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cms/FEES/Fees_Reciept.dart';
 import 'package:cms/FEES/Mobile_Pass.dart';
+import 'package:cms/student/Idcard.dart';
 import 'package:cms/student/Upload_Assignmnet_student.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -73,14 +74,36 @@ class _Profile_StudState extends State<Profile_Stud> {
               },
               child: const Row(
                 children: [
+                  FaIcon(FontAwesomeIcons.pager),
+                  Text("     "),
                   Text(
                     "View Assignment",
-                    style: TextStyle(fontSize: 24),
+                    style: TextStyle(fontSize: 28),
                   ),
-                  FaIcon(FontAwesomeIcons.pager),
+                  
                 ],
               ),
-            )
+            ),
+            InkWell(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>  Id_Card(widget.u_email),
+                    ));
+              },
+              child: const Row(
+                children: [
+                  FaIcon(FontAwesomeIcons.idCard),
+                  Text("     "),
+                  Text(
+                    "ID Card",
+                    style: TextStyle(fontSize: 28),
+                  ),
+                
+                ],
+              ),
+            ),
           ],
         ),
       ),
@@ -102,7 +125,7 @@ class _Profile_StudState extends State<Profile_Stud> {
                 String documentId = documents[index].id;
                 var date = data['PresentDate'].toString();
                 var ldate;
-                if (date.length > 10 && date.isEmpty) {
+                if (date.length > 10 || date.isNotEmpty) {
                   ldate = date.substring(date.length - 10);
                 } else {
                   ldate = "No Present Added";
