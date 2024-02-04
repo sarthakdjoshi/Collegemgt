@@ -50,8 +50,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void singin() async {
     try {
-      String email = e_mail.text.toString();
-      String password = pass.text.toString();
+      String email = e_mail.text.trim().toString();
+      String password = pass.text.trim().toString();
       UserCredential userCredential = await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
       Navigator.push(
