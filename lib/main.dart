@@ -54,7 +54,7 @@ class _MyHomePageState extends State<MyHomePage> {
       String password = pass.text.trim().toString();
       UserCredential userCredential = await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
-      Navigator.push(
+      Navigator.pushReplacement(
           context,
           MaterialPageRoute(
             builder: (context) => Profile_Stud(email),
@@ -122,8 +122,10 @@ class _MyHomePageState extends State<MyHomePage> {
               controller: pass,
               obscureText: abc,
               obscuringCharacter: "*",
+
               decoration: InputDecoration(
                 label: const Text("Enter Password"),
+
                 prefixIcon: IconButton(
                   onPressed: () {
                     abc = !abc;
@@ -134,11 +136,15 @@ class _MyHomePageState extends State<MyHomePage> {
                 prefixIconColor: Colors.cyan,
               ),
             ),
+            CupertinoButton(child: const Text("Clear"), onPressed: (){
+              e_mail.clear();
+              pass.clear();
+            }),
             ElevatedButton(
                 onPressed: () {
                   if (e_mail.text.toString() == "admin" &&
                       pass.text.toString() == "admin") {
-                    Navigator.push(
+                    Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
                           builder: (context) => const Admin_Panel(),
@@ -151,7 +157,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     );
                   } else if (e_mail.text.toString() == "fees" &&
                       pass.text.toString() == "fees") {
-                    Navigator.push(
+                    Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
                           builder: (context) => const Fees_panel(),
