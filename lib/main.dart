@@ -122,10 +122,8 @@ class _MyHomePageState extends State<MyHomePage> {
               controller: pass,
               obscureText: abc,
               obscuringCharacter: "*",
-
               decoration: InputDecoration(
                 label: const Text("Enter Password"),
-
                 prefixIcon: IconButton(
                   onPressed: () {
                     abc = !abc;
@@ -136,10 +134,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 prefixIconColor: Colors.cyan,
               ),
             ),
-            CupertinoButton(child: const Text("Clear"), onPressed: (){
-              e_mail.clear();
-              pass.clear();
-            }),
+            CupertinoButton(
+                child: const Text("Clear"),
+                onPressed: () {
+                  e_mail.clear();
+                  pass.clear();
+                }),
             ElevatedButton(
                 onPressed: () {
                   if (e_mail.text.toString() == "admin" &&
