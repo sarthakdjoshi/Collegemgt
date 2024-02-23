@@ -1,8 +1,11 @@
+import 'dart:ui';
+
 import 'package:cms/FEES/Fees_Panel.dart';
 import 'package:cms/admin/Admin_Panel.dart';
 import 'package:cms/splash%20Screen.dart';
 import 'package:cms/student/profile_stud.dart';
 import 'package:cms/teacher/Teacher_signin.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -14,6 +17,14 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  FlutterError.onError = (errorDetails) {
+    FirebaseCrashlytics.instance.recordFlutterFatalError(errorDetails);
+  };
+  // Pass all uncaught asynchronous errors that aren't handled by the Flutter framework to Crashlytics
+  PlatformDispatcher.instance.onError = (error, stack) {
+    FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
+    return true;
+  };
   runApp(const MyApp());
 }
 
@@ -102,6 +113,10 @@ class _MyHomePageState extends State<MyHomePage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            TextButton(
+              onPressed: () => throw Exception(),
+              child: const Text("Throw Test Exception"),
+            ),
             const Text(
               "Student Login Here",
               style: TextStyle(
@@ -217,6 +232,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 )
               ],
             ),
+
           ],
         )),
       ),
