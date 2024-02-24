@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -29,7 +28,7 @@ class _sem_prgState extends State<sem_prg> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Cheange Sem"),
+        title: const Text("Change Sem"),
         centerTitle: true,
         backgroundColor: Colors.blue,
       ),
@@ -63,23 +62,31 @@ class _sem_prgState extends State<sem_prg> {
                 );
               }).toList(),
             ),
-            CupertinoButton(
-                child: const Text("Change Sem"),
-                onPressed: () {
-                  FirebaseFirestore.instance
-                      .collection("Students")
-                      .doc(widget.id)
-                      .update({
-                    'CurrentSem': Sem.toString(),
-                    "fees": "unpaid",
-                    "mobilepass": "no",
-                    "mobile_pass_gen_date": "notgenerate",
-                    "PresentDate":
-                        DateFormat('yyyy-MM-dd').format(DateTime.now()),
-                  });
-                  ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text("Semester Change")));
-                }),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 10),
+              child: SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(backgroundColor: Colors.indigo,shape: const RoundedRectangleBorder(borderRadius: BorderRadius.zero)),
+
+                    onPressed: () {
+                      FirebaseFirestore.instance
+                          .collection("Students")
+                          .doc(widget.id)
+                          .update({
+                        'CurrentSem': Sem.toString(),
+                        "fees": "unpaid",
+                        "mobilepass": "no",
+                        "mobile_pass_gen_date": "notgenerate",
+                        "PresentDate":
+                            DateFormat('yyyy-MM-dd').format(DateTime.now()),
+                      });
+                      ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text("Semester Change")));
+                    },
+                    child: const Text("Change Sem",style: TextStyle(color: Colors.white),)),
+              ),
+            ),
           ],
         ),
       ),

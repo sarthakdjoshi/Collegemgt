@@ -113,10 +113,6 @@ class _MyHomePageState extends State<MyHomePage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            TextButton(
-              onPressed: () => throw Exception(),
-              child: const Text("Throw Test Exception"),
-            ),
             const Text(
               "Student Login Here",
               style: TextStyle(
@@ -155,43 +151,51 @@ class _MyHomePageState extends State<MyHomePage> {
                   e_mail.clear();
                   pass.clear();
                 }),
-            ElevatedButton(
-                onPressed: () {
-                  if (e_mail.text.toString() == "admin" &&
-                      pass.text.toString() == "admin") {
-                    Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const Admin_Panel(),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 10),
+              child: SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                    onPressed: () {
+                      if (e_mail.text.toString() == "admin" &&
+                          pass.text.toString() == "admin") {
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const Admin_Panel(),
+                            ));
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text("Admin Logged in"),
+                            duration: Duration(seconds: 2),
+                          ),
+                        );
+                      } else if (e_mail.text.toString() == "fees" &&
+                          pass.text.toString() == "fees") {
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const Fees_panel(),
+                            ));
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text("Fees_Department Logged in"),
+                            duration: Duration(seconds: 2),
+                          ),
+                        );
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                          content: Text("Please Wait"),
+                          duration: Duration(seconds: 2),
                         ));
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text("Admin Logged in"),
-                        duration: Duration(seconds: 2),
-                      ),
-                    );
-                  } else if (e_mail.text.toString() == "fees" &&
-                      pass.text.toString() == "fees") {
-                    Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const Fees_panel(),
-                        ));
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text("Fees_Department Logged in"),
-                        duration: Duration(seconds: 2),
-                      ),
-                    );
-                  } else {
-                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                      content: Text("Please Wait"),
-                      duration: Duration(seconds: 2),
-                    ));
-                    singin();
-                  }
-                },
-                child: const Text("Login")),
+                        singin();
+                      }
+                    },style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.indigo,
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
+                    child: const Text("Login",style: TextStyle(color: Colors.white),)),
+              ),
+            ),
             Row(
               children: [
                 CupertinoButton(

@@ -37,6 +37,9 @@ class _Student_BonafiedState extends State<Student_Bonafied> {
                 Map<String, dynamic> data =
                     documents[index].data() as Map<String, dynamic>;
                 String documentId = documents[index].id;
+                String gen="";
+                if(data['gender']=="Male"){gen="He";}else if(data['gender']=="Female"){gen="She";}
+
                 return Column(
                   children: [
                     Text(
@@ -50,7 +53,7 @@ class _Student_BonafiedState extends State<Student_Bonafied> {
                       height: 20,
                     ),
                     Text(
-                      "This Is certify that Mr./Mrs.${data['name'].toString()}    S/O OR D/O Of MR./MRS.${data['parentsname'].toString()} Is Student Of________(Year)___________Course name-${data['Course'.toString()]} For Academic Year_____________________________.He/She Is Bonafide Student Of SSCCM ",
+                      "This Is certify that Mr./Mrs.${data['name'].toString()}    S/O OR D/O Of MR./MRS.${data['parentsname'].toString()}   Course name-${data['Course'.toString()]} ${gen.toString()} Is Bonafide Student Of SSCCM ",
                       style: const TextStyle(fontSize: 18),
                     ),
                     const Divider(

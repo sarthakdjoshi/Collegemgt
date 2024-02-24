@@ -22,76 +22,83 @@ class _Sem_ProgressState extends State<Sem_Progress> {
         centerTitle: true,
         backgroundColor: Colors.blue,
       ),
-      body: FutureBuilder<QuerySnapshot>(
-        future: abc,
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const CircularProgressIndicator();
-          } else if (snapshot.hasError) {
-            return Text('Error: ${snapshot.error}');
-          } else {
-            List<DocumentSnapshot> documents = snapshot.data!.docs;
-            return ListView.builder(
-              itemCount: documents.length,
-              itemBuilder: (context, index) {
-                Map<String, dynamic> data =
-                    documents[index].data() as Map<String, dynamic>;
-                String documentId = documents[index].id;
-                return Column(
+      body: Column(
+        children: [
+          Row(
+            children: [
+              SizedBox(
+                width: (MediaQuery.of(context).size.width) * 0.8,
+                child: Row(
                   children: [
-                    Row(
-                      children: [
-                        SizedBox(
-                          width: (MediaQuery.of(context).size.width) * 0.8,
-                          child: Row(
-                            children: [
-                              Expanded(
-                                  child: TextField(
-                                controller: search,
-                                decoration: const InputDecoration(
-                                    labelText: "Enter Name"),
-                              )),
-                            ],
-                          ),
-                        ),
-                        CupertinoButton(
-                            child: const Text("Search"),
-                            onPressed: () {
-                              abc = FirebaseFirestore.instance
-                                  .collection('Students')
-                                  .where('name',
-                                      isEqualTo: search.text.toString())
-                                  .get();
-                              setState(() {});
-                            })
-                      ],
-                    ),
-                    SingleChildScrollView(
-                      child: ListTile(
-                        title: Text(data['name']),
-                        subtitle: Text("Current Sem Is ${data['CurrentSem']}"),
-                        leading: CircleAvatar(
-                          backgroundImage: NetworkImage(data['photo']),
-                        ),
-                        trailing: CupertinoButton(
-                          onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => sem_prg(
-                                      data['name'], documentId, data['photo']),
-                                ));
-                          },
-                          child: const Text("Change Sem"),
-                        ),
-                      ),
-                    ),
+                    Expanded(
+                        child: TextField(
+                          controller: search,
+                          decoration: const InputDecoration(
+                              labelText: "Enter Name"),
+                        )),
                   ],
-                );
+                ),
+              ),
+              CupertinoButton(
+                  child: const Text("Search"),
+                  onPressed: () {
+                    abc = FirebaseFirestore.instance
+                        .collection('Students')
+                        .where('name', isEqualTo: search.text.toString())
+                        .get();
+
+                    setState(() {});
+                  })
+            ],
+          ),
+          Expanded(
+            child: FutureBuilder<QuerySnapshot>(
+              future: abc,
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const CircularProgressIndicator();
+                } else if (snapshot.hasError) {
+                  return Text('Error: ${snapshot.error}');
+                } else {
+                  List<DocumentSnapshot> documents = snapshot.data!.docs;
+                  return ListView.builder(
+                    itemCount: documents.length,
+                    itemBuilder: (context, index) {
+                      Map<String, dynamic> data =
+                          documents[index].data() as Map<String, dynamic>;
+                      String documentId = documents[index].id;
+                      return Column(
+                        children: [
+                          
+                          SingleChildScrollView(
+                            child: ListTile(
+                              title: Text(data['name']),
+                              subtitle: Text("Current Sem Is ${data['CurrentSem']}"),
+                              leading: CircleAvatar(
+                                backgroundImage: NetworkImage(data['photo']),
+                              ),
+                              trailing: CupertinoButton(
+                                onPressed: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => sem_prg(
+                                            data['name'], documentId, data['photo']),
+                                      ));
+                                },
+                                child: const Text("Change Sem"),
+                              ),
+                            ),
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                }
               },
-            );
-          }
-        },
+            ),
+          ),
+        ],
       ),
     );
   }

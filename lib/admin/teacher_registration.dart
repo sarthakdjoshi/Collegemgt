@@ -451,12 +451,16 @@ class _Teacher_regState extends State<Teacher_reg> {
                   const SizedBox(
                     width: double.infinity,
                   ),
-                  ElevatedButton(
-                      onPressed: () {
-                        register();
-                        createuser();
-                      },
-                      child: const Text("Register"))
+                  SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                        onPressed: () {
+                          register();
+                          createuser();
+                        },style: ElevatedButton.styleFrom(backgroundColor: Colors.indigo,shape: const RoundedRectangleBorder(borderRadius: BorderRadius.zero)),
+
+                        child: const Text("Register",style: TextStyle(color: Colors.white),)),
+                  )
                 ],
               ),
             ),

@@ -38,102 +38,106 @@ class _Show_StudentState extends State<Show_Student> {
         centerTitle: true,
         backgroundColor: Colors.purple,
       ),
-      body: FutureBuilder<QuerySnapshot>(
-        future: abc,
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const CircularProgressIndicator();
-          } else if (snapshot.hasError) {
-            return Text('Error: ${snapshot.error}');
-          } else {
-            List<DocumentSnapshot> documents = snapshot.data!.docs;
-            return ListView.builder(
-              itemCount: documents.length,
-              itemBuilder: (context, index) {
-                Map<String, dynamic> data =
-                    documents[index].data() as Map<String, dynamic>;
-                String documentId = documents[index].id;
-                return Column(
+      body: Column(
+        children: [
+          Row(
+            children: [
+              SizedBox(
+                width: (MediaQuery.of(context).size.width) * 0.8,
+                child: Row(
                   children: [
-                    Row(
-                      children: [
-                        SizedBox(
-                          width: (MediaQuery.of(context).size.width) * 0.8,
-                          child: Row(
-                            children: [
-                              Expanded(
-                                child: DropdownButton<String>(
-                                  value: Course,
-                                  onChanged: (String? newValue) {
-                                    setState(() {
-                                      Course = newValue!;
-                                    });
-                                  },
-                                  items: options.map<DropdownMenuItem<String>>(
-                                      (String value) {
-                                    return DropdownMenuItem<String>(
-                                      value: value,
-                                      child: Text(value),
-                                    );
-                                  }).toList(),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        CupertinoButton(
-                            child: const Text("Search"),
-                            onPressed: () {
-                              if (Course.toString() != "Select Course") {
-                                abc = FirebaseFirestore.instance
-                                    .collection('Students')
-                                    .where('Course',
-                                        isEqualTo: Course.trim().toString())
-                                    .get();
-
-                                setState(() {});
-                              }
-                              if (Course.toString() == "All") {
-                                abc = FirebaseFirestore.instance
-                                    .collection('Students')
-                                    .get();
-                                setState(() {});
-                              } else {
-                                ScaffoldMessenger.of(context)
-                                    .showSnackBar(const SnackBar(
-                                  content: Text("Choose Any Course"),
-                                  duration: Duration(seconds: 2),
-                                ));
-                              }
-                            })
-                      ],
-                    ),
-                    SingleChildScrollView(
-                      child: ListTile(
-                        title: Text(data['name']),
-                        subtitle: Text(data['Course']),
-                        leading: CircleAvatar(
-                          backgroundImage: NetworkImage(data['photo']),
-                        ),
-                        trailing: CupertinoButton(
-                          onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) =>
-                                      Profile_Stud(data['email']),
-                                ));
-                          },
-                          child: const Text("Show  Profile"),
-                        ),
+                    Expanded(
+                      child: DropdownButton<String>(
+                        value: Course,
+                        onChanged: (String? newValue) {
+                          setState(() {
+                            Course = newValue!;
+                          });
+                        },
+                        items: options
+                            .map<DropdownMenuItem<String>>((String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(value),
+                          );
+                        }).toList(),
                       ),
                     ),
                   ],
-                );
+                ),
+              ),
+              CupertinoButton(
+                  child: const Text("Search"),
+                  onPressed: () {
+                    if (Course.toString() != "Select Course") {
+                      abc = FirebaseFirestore.instance
+                          .collection('Students')
+                          .where('Course', isEqualTo: Course.trim().toString())
+                          .get();
+
+                      setState(() {});
+                    }
+                    if (Course.toString() == "All") {
+                      abc = FirebaseFirestore.instance
+                          .collection('Students')
+                          .get();
+                      setState(() {});
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                        content: Text("No Student Found"),
+                        duration: Duration(seconds: 2),
+                      ));
+                    }
+                  })
+            ],
+          ),
+          Expanded(
+            child: FutureBuilder<QuerySnapshot>(
+              future: abc,
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Center(child: CircularProgressIndicator());
+                } else if (snapshot.hasError) {
+                  return Text('Error: ${snapshot.error}');
+                } else {
+                  List<DocumentSnapshot> documents = snapshot.data!.docs;
+                  return ListView.builder(
+                    itemCount: documents.length,
+                    itemBuilder: (context, index) {
+                      Map<String, dynamic> data =
+                          documents[index].data() as Map<String, dynamic>;
+                      String documentId = documents[index].id;
+                      return Column(
+                        children: [
+                          SingleChildScrollView(
+                            child: ListTile(
+                              title: Text(data['name']),
+                              subtitle: Text(data['Course']),
+                              leading: CircleAvatar(
+                                backgroundImage: NetworkImage(data['photo']),
+                              ),
+                              trailing: CupertinoButton(
+                                onPressed: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            Profile_Stud(data['email']),
+                                      ));
+                                },
+                                child: const Text("Show  Profile"),
+                              ),
+                            ),
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                }
               },
-            );
-          }
-        },
+            ),
+          ),
+        ],
       ),
     );
   }

@@ -38,6 +38,8 @@ class _Mobile_PassState extends State<Mobile_Pass> {
                 Map<String, dynamic> data =
                     documents[index].data() as Map<String, dynamic>;
                 String documentId = documents[index].id;
+                String gen="";
+                if(data['gender']=="Male"){gen="He";}else if(data['gender']=="Female"){gen="She";}
                 return Column(
                   children: [
                     Image.network(
@@ -56,7 +58,7 @@ class _Mobile_PassState extends State<Mobile_Pass> {
                       height: 20,
                     ),
                     Text(
-                      "This Is certify that Mr./Mrs.${data['name'].toString()}    S/O OR D/O Of MR./MRS.${data['parentsname'].toString()} Course name-${data['Course'.toString()]} And Semester-${data['CurrentSem']}  For Academic Year_____________________________.He/She Has Permit To Allow Mobile Inside The College Premise ",
+                      "This Is certify that Mr./Mrs.${data['name'].toString()}    S/O OR D/O Of MR./MRS.${data['parentsname'].toString()} Course name-${data['Course'.toString()]} And Semester-${data['CurrentSem']} ${gen.toString()} Has Permit To Allow Mobile Inside The College Premise ",
                       style: const TextStyle(fontSize: 18),
                     ),
                     const Divider(
