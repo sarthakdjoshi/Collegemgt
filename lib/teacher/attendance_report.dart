@@ -29,19 +29,19 @@ class _Attendance_ReportState extends State<Attendance_Report> {
               TableRow(children: [
                 TableCell(
                     child: Text(
-                      "Sr.No",
-                      style: TextStyle(fontSize: 18),
-                    )),
+                  "Sr.No",
+                  style: TextStyle(fontSize: 18),
+                )),
                 TableCell(
                     child: Text(
-                      "Name",
-                      style: TextStyle(fontSize: 18),
-                    )),
+                  "Name",
+                  style: TextStyle(fontSize: 18),
+                )),
                 TableCell(
                     child: Text(
-                      "Course",
-                      style: TextStyle(fontSize: 24),
-                    )),
+                  "Course",
+                  style: TextStyle(fontSize: 24),
+                )),
                 TableCell(child: Text("PresentDate"))
               ]),
             ],
@@ -64,7 +64,8 @@ class _Attendance_ReportState extends State<Attendance_Report> {
                       String documentId = documents[index].id;
                       index = index + 1;
                       return Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 10),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 10, vertical: 10),
                         child: Table(
                           border: TableBorder.all(),
                           defaultColumnWidth: const FixedColumnWidth(100.0),

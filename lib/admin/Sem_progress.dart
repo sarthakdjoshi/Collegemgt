@@ -32,10 +32,10 @@ class _Sem_ProgressState extends State<Sem_Progress> {
                   children: [
                     Expanded(
                         child: TextField(
-                          controller: search,
-                          decoration: const InputDecoration(
-                              labelText: "Enter Name"),
-                        )),
+                      controller: search,
+                      decoration:
+                          const InputDecoration(labelText: "Enter Name"),
+                    )),
                   ],
                 ),
               ),
@@ -69,11 +69,11 @@ class _Sem_ProgressState extends State<Sem_Progress> {
                       String documentId = documents[index].id;
                       return Column(
                         children: [
-                          
                           SingleChildScrollView(
                             child: ListTile(
                               title: Text(data['name']),
-                              subtitle: Text("Current Sem Is ${data['CurrentSem']}"),
+                              subtitle:
+                                  Text("Current Sem Is ${data['CurrentSem']}"),
                               leading: CircleAvatar(
                                 backgroundImage: NetworkImage(data['photo']),
                               ),
@@ -83,7 +83,9 @@ class _Sem_ProgressState extends State<Sem_Progress> {
                                       context,
                                       MaterialPageRoute(
                                         builder: (context) => sem_prg(
-                                            data['name'], documentId, data['photo']),
+                                            data['name'],
+                                            documentId,
+                                            data['photo']),
                                       ));
                                 },
                                 child: const Text("Change Sem"),

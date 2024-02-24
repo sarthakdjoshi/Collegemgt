@@ -110,7 +110,7 @@ class _Profile_StudState extends State<Profile_Stud> {
         builder: (context, snapshot) {
           print(widget.u_email);
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(child:  CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           } else if (snapshot.hasError) {
             return Text('Error: ${snapshot.error}');
           } else {

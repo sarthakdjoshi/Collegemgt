@@ -33,16 +33,14 @@ class _Transfer_certificate_panelState
                 width: (MediaQuery.of(context).size.width) * 0.8,
                 child: TextField(
                   controller: search,
-                  decoration:
-                  const InputDecoration(labelText: "Search Name"),
+                  decoration: const InputDecoration(labelText: "Search Name"),
                 ),
               ),
               CupertinoButton(
                   child: const Text("Search"),
                   onPressed: () {
                     if (search.text.isEmpty) {
-                      ScaffoldMessenger.of(context)
-                          .showSnackBar(const SnackBar(
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                         content: Text("Enter Name"),
                         duration: Duration(seconds: 2),
                       ));
@@ -50,8 +48,7 @@ class _Transfer_certificate_panelState
                       abc = FirebaseFirestore.instance
                           .collection('Students')
                           .where("name",
-                          isEqualTo:
-                          search.text.trim().toString())
+                              isEqualTo: search.text.trim().toString())
                           .get();
 
                       setState(() {});
@@ -78,7 +75,6 @@ class _Transfer_certificate_panelState
                       String documentId = documents[index].id;
                       return Column(
                         children: [
-
                           SingleChildScrollView(
                             child: ListTile(
                               title: Text(data['name']),
@@ -95,7 +91,8 @@ class _Transfer_certificate_panelState
                                           context,
                                           MaterialPageRoute(
                                             builder: (context) =>
-                                                Transfer_Certificate(data['email']),
+                                                Transfer_Certificate(
+                                                    data['email']),
                                           ));
                                     } else if (data['fees'] == "unpaid") {
                                       ScaffoldMessenger.of(context)

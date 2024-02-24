@@ -37,8 +37,12 @@ class _Student_BonafiedState extends State<Student_Bonafied> {
                 Map<String, dynamic> data =
                     documents[index].data() as Map<String, dynamic>;
                 String documentId = documents[index].id;
-                String gen="";
-                if(data['gender']=="Male"){gen="He";}else if(data['gender']=="Female"){gen="She";}
+                String gen = "";
+                if (data['gender'] == "Male") {
+                  gen = "He";
+                } else if (data['gender'] == "Female") {
+                  gen = "She";
+                }
 
                 return Column(
                   children: [

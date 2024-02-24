@@ -63,12 +63,14 @@ class _sem_prgState extends State<sem_prg> {
               }).toList(),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
               child: SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(backgroundColor: Colors.indigo,shape: const RoundedRectangleBorder(borderRadius: BorderRadius.zero)),
-
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.indigo,
+                        shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.zero)),
                     onPressed: () {
                       FirebaseFirestore.instance
                           .collection("Students")
@@ -84,7 +86,10 @@ class _sem_prgState extends State<sem_prg> {
                       ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(content: Text("Semester Change")));
                     },
-                    child: const Text("Change Sem",style: TextStyle(color: Colors.white),)),
+                    child: const Text(
+                      "Change Sem",
+                      style: TextStyle(color: Colors.white),
+                    )),
               ),
             ),
           ],

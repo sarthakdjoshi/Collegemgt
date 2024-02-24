@@ -469,7 +469,11 @@ class _SecondState extends State<Second> {
                               register();
                               createuser();
                             }
-                          },style: ElevatedButton.styleFrom(backgroundColor: Colors.indigo,shape: const RoundedRectangleBorder(borderRadius: BorderRadius.zero)),
+                          },
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.indigo,
+                              shape: const RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.zero)),
                           child: const Text(
                             "Singup",
                             style: TextStyle(fontSize: 36,color: Colors.white),

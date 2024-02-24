@@ -457,8 +457,11 @@ class _Teacher_regState extends State<Teacher_reg> {
                         onPressed: () {
                           register();
                           createuser();
-                        },style: ElevatedButton.styleFrom(backgroundColor: Colors.indigo,shape: const RoundedRectangleBorder(borderRadius: BorderRadius.zero)),
-
+                        },
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.indigo,
+                            shape: const RoundedRectangleBorder(
+                                borderRadius: BorderRadius.zero)),
                         child: const Text("Register",style: TextStyle(color: Colors.white),)),
                   )
                 ],

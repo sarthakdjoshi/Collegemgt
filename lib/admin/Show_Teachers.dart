@@ -13,7 +13,8 @@ class Show_teacher extends StatefulWidget {
 class _Show_teacherState extends State<Show_teacher> {
   CollectionReference users = FirebaseFirestore.instance.collection('Teachers');
   var abc = FirebaseFirestore.instance.collection('Teachers').get();
-    var search=TextEditingController();
+  var search = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,16 +31,14 @@ class _Show_teacherState extends State<Show_teacher> {
                 width: (MediaQuery.of(context).size.width) * 0.8,
                 child: TextField(
                   controller: search,
-                  decoration:
-                  const InputDecoration(labelText: "Search Name"),
+                  decoration: const InputDecoration(labelText: "Search Name"),
                 ),
               ),
               CupertinoButton(
                   child: const Text("Search"),
                   onPressed: () {
                     if (search.text.isEmpty) {
-                      ScaffoldMessenger.of(context)
-                          .showSnackBar(const SnackBar(
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                         content: Text("Enter Name"),
                         duration: Duration(seconds: 2),
                       ));
@@ -47,8 +46,7 @@ class _Show_teacherState extends State<Show_teacher> {
                       abc = FirebaseFirestore.instance
                           .collection('Teachers')
                           .where("name",
-                          isEqualTo:
-                          search.text.trim().toString())
+                              isEqualTo: search.text.trim().toString())
                           .get();
 
                       setState(() {});
@@ -57,14 +55,12 @@ class _Show_teacherState extends State<Show_teacher> {
                   })
             ],
           ),
-
           Expanded(
             child: FutureBuilder<QuerySnapshot>(
               future: abc,
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const Center(child: CircularProgressIndicator());
-
                 } else if (snapshot.hasError) {
                   return Text('Error: ${snapshot.error}');
                 } else {
@@ -86,7 +82,12 @@ class _Show_teacherState extends State<Show_teacher> {
                           ),
                           trailing: CupertinoButton(
                             onPressed: () {
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => Profile_Teacher(data['email']),));
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        Profile_Teacher(data['email']),
+                                  ));
                             },
                             child: const Text("Show  Profile"),
                           ),

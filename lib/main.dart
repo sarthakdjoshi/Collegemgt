@@ -152,7 +152,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   pass.clear();
                 }),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
               child: SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
@@ -184,16 +184,22 @@ class _MyHomePageState extends State<MyHomePage> {
                           ),
                         );
                       } else {
-                        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                        ScaffoldMessenger.of(context)
+                            .showSnackBar(const SnackBar(
                           content: Text("Please Wait"),
                           duration: Duration(seconds: 2),
                         ));
                         singin();
                       }
-                    },style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.indigo,
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
-                    child: const Text("Login",style: TextStyle(color: Colors.white),)),
+                    },
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.indigo,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10))),
+                    child: const Text(
+                      "Login",
+                      style: TextStyle(color: Colors.white),
+                    )),
               ),
             ),
             Row(
@@ -236,7 +242,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 )
               ],
             ),
-
           ],
         )),
       ),
