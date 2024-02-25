@@ -128,7 +128,7 @@ class _SecondState extends State<Second> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Text(
-                    "Singup Form",
+                    "Student Register",
                     style: TextStyle(
                         fontSize: 24,
                         color: Colors.blue,
@@ -475,7 +475,7 @@ class _SecondState extends State<Second> {
                               shape: const RoundedRectangleBorder(
                                   borderRadius: BorderRadius.zero)),
                           child: const Text(
-                            "Singup",
+                            "Register",
                             style: TextStyle(fontSize: 36,color: Colors.white),
                           ))),
                 ],

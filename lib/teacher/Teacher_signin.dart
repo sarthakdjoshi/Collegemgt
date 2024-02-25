@@ -83,7 +83,7 @@ class _Teacher_SigininState extends State<Teacher_Siginin> {
               TextField(
                 controller: e_mail,
                 decoration: const InputDecoration(
-                  label: Text("Enter Email"),
+                  hintText: "Enter Email",
                   prefixIcon: Icon(Icons.email),
                   prefixIconColor: Colors.indigoAccent,
                 ),
@@ -93,7 +93,7 @@ class _Teacher_SigininState extends State<Teacher_Siginin> {
                 obscureText: abc,
                 obscuringCharacter: "*",
                 decoration: InputDecoration(
-                  label: const Text("Enter Password"),
+                  hintText: "Enter Password",
                   prefixIcon: IconButton(
                     onPressed: () {
                       abc = !abc;
@@ -104,15 +104,41 @@ class _Teacher_SigininState extends State<Teacher_Siginin> {
                   prefixIconColor: Colors.cyan,
                 ),
               ),
-              ElevatedButton(
-                  onPressed: () {
-                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                      content: Text("Please Wait"),
-                      duration: Duration(seconds: 2),
-                    ));
-                    singin();
-                  },
-                  child: const Text("Login")),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 10),
+                child: SizedBox(
+                  width: double.infinity,
+                   child: ElevatedButton(
+                      onPressed: () {
+                        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                          content: Text("Please Wait"),
+                          duration: Duration(seconds: 2),
+                        ));
+                        singin();
+                      },style: ElevatedButton.styleFrom(
+                       backgroundColor: Colors.indigo,
+                       shape: const RoundedRectangleBorder(
+                           borderRadius: BorderRadius.zero)),
+
+                       child: const Text("Login",style: TextStyle(fontSize: 26,color: Colors.white))),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 10),
+                child: SizedBox(
+                  width: double.infinity,
+                   child: ElevatedButton(
+                      onPressed: () {
+                        e_mail.clear();
+                        pass.clear();
+                      },style: ElevatedButton.styleFrom(
+                       backgroundColor: Colors.indigo,
+                       shape: const RoundedRectangleBorder(
+                           borderRadius: BorderRadius.zero)),
+
+                       child: const Text("Clear",style: TextStyle(fontSize: 26,color: Colors.white))),
+                ),
+              ),
               Row(
                 children: [
                   CupertinoButton(
