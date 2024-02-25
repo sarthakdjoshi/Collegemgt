@@ -462,7 +462,7 @@ class _Teacher_regState extends State<Teacher_reg> {
                             backgroundColor: Colors.indigo,
                             shape: const RoundedRectangleBorder(
                                 borderRadius: BorderRadius.zero)),
-                        child: const Text("Register",style: TextStyle(color: Colors.white),)),
+                        child: const Text("Register",style: TextStyle(color: Colors.white,fontSize: 36),)),
                   )
                 ],
               ),
