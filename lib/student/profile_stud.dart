@@ -335,7 +335,7 @@ class _Profile_StudState extends State<Profile_Stud> {
                               style: TextStyle(fontSize: 24),
                             )),
                             TableCell(
-                              child: (data['fees'] == "unpaid")
+                              child: (data['mobilepass'] != "yes")
                                   ? const Text(
                                       "You are Not Allow To Mobile Pass",
                                       style: TextStyle(fontSize: 24),
