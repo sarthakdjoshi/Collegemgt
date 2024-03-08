@@ -301,7 +301,7 @@ class _Profile_StudState extends State<Profile_Stud> {
                                               context,
                                               MaterialPageRoute(
                                                 builder: (context) =>
-                                                    Fees_reciept(data['email']),
+                                                    FeesReceipt(data['email']),
                                               ));
                                         })),
                           ]),

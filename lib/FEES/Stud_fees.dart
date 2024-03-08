@@ -101,7 +101,7 @@ class _Stud_feesState extends State<Stud_fees> {
                                           context,
                                           MaterialPageRoute(
                                             builder: (context) =>
-                                                Fees_reciept(data['email']),
+                                                FeesReceipt(data['email']),
                                           ));
                                     }
                                   } catch (e) {
