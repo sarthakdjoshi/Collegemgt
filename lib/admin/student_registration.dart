@@ -476,7 +476,7 @@ class _SecondState extends State<Second> {
                                   borderRadius: BorderRadius.zero)),
                           child: const Text(
                             "Register",
-                            style: TextStyle(fontSize: 36,color: Colors.white),
+                            style: TextStyle(fontSize: 36, color: Colors.white),
                           ))),
                 ],
               ),

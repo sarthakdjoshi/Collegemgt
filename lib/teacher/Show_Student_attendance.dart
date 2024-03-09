@@ -70,13 +70,13 @@ class _Show_Student_attendanceState extends State<Show_Student_attendance> {
                             Course = newValue!;
                           });
                         },
-                        items: options.map<DropdownMenuItem<String>>(
-                                (String value) {
-                              return DropdownMenuItem<String>(
-                                value: value,
-                                child: Text(value),
-                              );
-                            }).toList(),
+                        items: options
+                            .map<DropdownMenuItem<String>>((String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(value),
+                          );
+                        }).toList(),
                       ),
                     ),
                   ],
@@ -88,8 +88,7 @@ class _Show_Student_attendanceState extends State<Show_Student_attendance> {
                     if (Course.toString() != "Select Course") {
                       abc = FirebaseFirestore.instance
                           .collection('Students')
-                          .where('Course',
-                          isEqualTo: Course.trim().toString())
+                          .where('Course', isEqualTo: Course.trim().toString())
                           .get();
 
                       setState(() {});
@@ -98,8 +97,7 @@ class _Show_Student_attendanceState extends State<Show_Student_attendance> {
                       abc = FirebaseFirestore.instance
                           .collection('Students')
                           .get();
-                      ScaffoldMessenger.of(context)
-                          .showSnackBar(const SnackBar(
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                         content: Text("Choose Any Course"),
                         duration: Duration(seconds: 2),
                       ));
@@ -127,7 +125,6 @@ class _Show_Student_attendanceState extends State<Show_Student_attendance> {
                       String documentId = documents[index].id;
                       return Column(
                         children: [
-
                           SingleChildScrollView(
                             child: ListTile(
                               title: Text(data['name']),
@@ -159,8 +156,8 @@ class _Show_Student_attendanceState extends State<Show_Student_attendance> {
                                       });
                                       ScaffoldMessenger.of(context)
                                           .showSnackBar(SnackBar(
-                                        content:
-                                            Text("Prenset Added For${data['name']}"),
+                                        content: Text(
+                                            "Prenset Added For${data['name']}"),
                                         duration: const Duration(seconds: 2),
                                       ));
                                       print("Update");

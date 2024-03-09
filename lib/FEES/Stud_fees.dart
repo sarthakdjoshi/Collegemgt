@@ -77,7 +77,6 @@ class _Stud_feesState extends State<Stud_fees> {
                       fees_detail = data['fees'];
                       return Column(
                         children: [
-                          
                           SingleChildScrollView(
                             child: ListTile(
                               title: Text(data['name']),

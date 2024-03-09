@@ -38,7 +38,7 @@ class _Mobile_PassState extends State<Mobile_Pass> {
                 Map<String, dynamic> data =
                     documents[index].data() as Map<String, dynamic>;
                 String documentId = documents[index].id;
-                String gen="";
+                String gen = "";
                 if (data['gender'] == "Male") {
                   gen = "He";
                 } else if (data['gender'] == "Female") {

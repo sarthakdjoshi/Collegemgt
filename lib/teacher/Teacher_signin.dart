@@ -28,8 +28,8 @@ class _Teacher_SigininState extends State<Teacher_Siginin> {
           MaterialPageRoute(
             builder: (context) => Profile_Teacher(email),
           ));
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Teacher Loggedin")));
-
+      ScaffoldMessenger.of(context)
+          .showSnackBar(const SnackBar(content: Text("Teacher Loggedin")));
     } on FirebaseAuthException catch (e) {
       print(e.code.toString());
       if (e.code.toString() == "invalid-credential") {
@@ -107,38 +107,43 @@ class _Teacher_SigininState extends State<Teacher_Siginin> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 10),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                 child: SizedBox(
                   width: double.infinity,
-                   child: ElevatedButton(
+                  child: ElevatedButton(
                       onPressed: () {
-                        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                        ScaffoldMessenger.of(context)
+                            .showSnackBar(const SnackBar(
                           content: Text("Please Wait"),
                           duration: Duration(seconds: 2),
                         ));
                         singin();
-                      },style: ElevatedButton.styleFrom(
-                       backgroundColor: Colors.indigo,
-                       shape: const RoundedRectangleBorder(
-                           borderRadius: BorderRadius.zero)),
-
-                       child: const Text("Login",style: TextStyle(fontSize: 26,color: Colors.white))),
+                      },
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.indigo,
+                          shape: const RoundedRectangleBorder(
+                              borderRadius: BorderRadius.zero)),
+                      child: const Text("Login",
+                          style: TextStyle(fontSize: 26, color: Colors.white))),
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 10),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                 child: SizedBox(
                   width: double.infinity,
-                   child: ElevatedButton(
+                  child: ElevatedButton(
                       onPressed: () {
                         e_mail.clear();
                         pass.clear();
-                      },style: ElevatedButton.styleFrom(
-                       backgroundColor: Colors.indigo,
-                       shape: const RoundedRectangleBorder(
-                           borderRadius: BorderRadius.zero)),
-
-                       child: const Text("Clear",style: TextStyle(fontSize: 26,color: Colors.white))),
+                      },
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.indigo,
+                          shape: const RoundedRectangleBorder(
+                              borderRadius: BorderRadius.zero)),
+                      child: const Text("Clear",
+                          style: TextStyle(fontSize: 26, color: Colors.white))),
                 ),
               ),
               Row(

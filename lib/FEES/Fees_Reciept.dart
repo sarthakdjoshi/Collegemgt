@@ -1,4 +1,3 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -35,7 +34,8 @@ class _FeesReceiptState extends State<FeesReceipt> {
             List<DocumentSnapshot> documents = snapshot.data!.docs;
             studentData = [];
             for (var document in documents) {
-              Map<String, dynamic> data = document.data() as Map<String, dynamic>;
+              Map<String, dynamic> data =
+                  document.data() as Map<String, dynamic>;
               String documentId = document.id;
               if (data['Course'] == "Bca") {
                 paid_fess = "13,500";
@@ -83,58 +83,58 @@ class _FeesReceiptState extends State<FeesReceipt> {
                           TableRow(children: [
                             const TableCell(
                                 child: Text(
-                                  "APP_ID",
-                                  style: TextStyle(fontSize: 24),
-                                )),
+                              "APP_ID",
+                              style: TextStyle(fontSize: 24),
+                            )),
                             TableCell(
                                 child: Text(
-                                  data['documentId'],
-                                  style: const TextStyle(fontSize: 24),
-                                )),
+                              data['documentId'],
+                              style: const TextStyle(fontSize: 24),
+                            )),
                           ]),
                           TableRow(children: [
                             const TableCell(
                                 child: Text(
-                                  "Name",
-                                  style: TextStyle(fontSize: 24),
-                                )),
+                              "Name",
+                              style: TextStyle(fontSize: 24),
+                            )),
                             TableCell(
                                 child: Text(
-                                  data['name'],
-                                  style: const TextStyle(fontSize: 24),
-                                )),
+                              data['name'],
+                              style: const TextStyle(fontSize: 24),
+                            )),
                           ]),
                           TableRow(children: [
                             const TableCell(
                                 child: Text(
-                                  "Stream",
-                                  style: TextStyle(fontSize: 24),
-                                )),
+                              "Stream",
+                              style: TextStyle(fontSize: 24),
+                            )),
                             TableCell(
                                 child: Text(
-                                  data['Course'],
-                                  style: const TextStyle(fontSize: 24),
-                                )),
+                              data['Course'],
+                              style: const TextStyle(fontSize: 24),
+                            )),
                           ]),
                           TableRow(children: [
                             const TableCell(
                                 child: Text(
-                                  "Email",
-                                  style: TextStyle(fontSize: 24),
-                                )),
+                              "Email",
+                              style: TextStyle(fontSize: 24),
+                            )),
                             TableCell(child: Text(data['email'])),
                           ]),
                           TableRow(children: [
                             const TableCell(
                                 child: Text(
-                                  "Gender",
-                                  style: TextStyle(fontSize: 24),
-                                )),
+                              "Gender",
+                              style: TextStyle(fontSize: 24),
+                            )),
                             TableCell(
                                 child: Text(
-                                  data['gender'],
-                                  style: const TextStyle(fontSize: 24),
-                                )),
+                              data['gender'],
+                              style: const TextStyle(fontSize: 24),
+                            )),
                           ]),
                           TableRow(
                               decoration: const BoxDecoration(
@@ -143,74 +143,74 @@ class _FeesReceiptState extends State<FeesReceipt> {
                               children: [
                                 const TableCell(
                                     child: Text(
-                                      "Student Paid fee",
-                                      style: TextStyle(fontSize: 24),
-                                    )),
+                                  "Student Paid fee",
+                                  style: TextStyle(fontSize: 24),
+                                )),
                                 TableCell(
                                     child: Text(
-                                      data['paid_fess'],
-                                      style: const TextStyle(fontSize: 24),
-                                    )),
+                                  data['paid_fess'],
+                                  style: const TextStyle(fontSize: 24),
+                                )),
                               ]),
                           TableRow(children: [
                             const TableCell(
                                 child: Text(
-                                  "Addharcard No.",
-                                  style: TextStyle(fontSize: 24),
-                                )),
+                              "Addharcard No.",
+                              style: TextStyle(fontSize: 24),
+                            )),
                             TableCell(
                                 child: Text(
-                                  data['addharcard'],
-                                  style: const TextStyle(fontSize: 24),
-                                )),
+                              data['addharcard'],
+                              style: const TextStyle(fontSize: 24),
+                            )),
                           ]),
                           TableRow(children: [
                             const TableCell(
                                 child: Text(
-                                  "city",
-                                  style: TextStyle(fontSize: 24),
-                                )),
+                              "city",
+                              style: TextStyle(fontSize: 24),
+                            )),
                             TableCell(
                                 child: Text(
-                                  data['city'],
-                                  style: const TextStyle(fontSize: 24),
-                                )),
+                              data['city'],
+                              style: const TextStyle(fontSize: 24),
+                            )),
                           ]),
                           TableRow(children: [
                             const TableCell(
                                 child: Text(
-                                  "State",
-                                  style: TextStyle(fontSize: 24),
-                                )),
+                              "State",
+                              style: TextStyle(fontSize: 24),
+                            )),
                             TableCell(
                                 child: Text(
-                                  data['state'],
-                                  style: const TextStyle(fontSize: 24),
-                                )),
+                              data['state'],
+                              style: const TextStyle(fontSize: 24),
+                            )),
                           ]),
                           TableRow(children: [
                             const TableCell(
                                 child: Text(
-                                  "Date Of Birth",
-                                  style: TextStyle(fontSize: 24),
-                                )),
+                              "Date Of Birth",
+                              style: TextStyle(fontSize: 24),
+                            )),
                             TableCell(
                                 child: Text(
-                                  data['dob'],
-                                  style: const TextStyle(fontSize: 24),
-                                )),
+                              data['dob'],
+                              style: const TextStyle(fontSize: 24),
+                            )),
                           ]),
                           TableRow(children: [
                             const TableCell(
                                 child: Text(
-                                  "fees",
-                                  style: TextStyle(fontSize: 24),
-                                )),
+                              "fees",
+                              style: TextStyle(fontSize: 24),
+                            )),
                             TableCell(
                                 child: Text(
-                                  data['fees'],
-                                  style: const TextStyle(fontSize: 24),
-                                )),
+                              data['fees'],
+                              style: const TextStyle(fontSize: 24),
+                            )),
                           ]),
                         ],
                       ),

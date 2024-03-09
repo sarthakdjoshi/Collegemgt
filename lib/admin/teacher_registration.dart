@@ -127,7 +127,10 @@ class _Teacher_regState extends State<Teacher_reg> {
                 children: [
                   const Text(
                     "Teacher Register",
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600,color: Colors.indigo),
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.indigo),
                   ),
                   const SizedBox(
                     height: 11,
@@ -462,7 +465,10 @@ class _Teacher_regState extends State<Teacher_reg> {
                             backgroundColor: Colors.indigo,
                             shape: const RoundedRectangleBorder(
                                 borderRadius: BorderRadius.zero)),
-                        child: const Text("Register",style: TextStyle(color: Colors.white,fontSize: 36),)),
+                        child: const Text(
+                          "Register",
+                          style: TextStyle(color: Colors.white, fontSize: 36),
+                        )),
                   )
                 ],
               ),
