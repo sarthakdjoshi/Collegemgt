@@ -23,11 +23,13 @@ class _Teacher_SigininState extends State<Teacher_Siginin> {
       String password = pass.text.toString();
       UserCredential userCredential = await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
-      Navigator.push(
+      Navigator.pushReplacement(
           context,
           MaterialPageRoute(
             builder: (context) => Profile_Teacher(email),
           ));
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Teacher Loggedin")));
+
     } on FirebaseAuthException catch (e) {
       print(e.code.toString());
       if (e.code.toString() == "invalid-credential") {

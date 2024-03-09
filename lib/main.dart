@@ -68,7 +68,9 @@ class _MyHomePageState extends State<MyHomePage> {
           context,
           MaterialPageRoute(
             builder: (context) => Profile_Stud(email),
+
           ));
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Student Loggedin")));
     } on FirebaseAuthException catch (e) {
       print(e.code.toString());
       if (e.code.toString() == "invalid-credential") {

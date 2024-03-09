@@ -46,7 +46,7 @@ class _Profile_StudState extends State<Profile_Stud> {
           IconButton(
               onPressed: () {
                 FirebaseAuth.instance.signOut();
-                Navigator.push(
+                Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
                       builder: (context) => const MyHomePage(),

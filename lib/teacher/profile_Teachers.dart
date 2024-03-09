@@ -50,7 +50,7 @@ class _Profile_TeacherState extends State<Profile_Teacher> {
           IconButton(
               onPressed: () {
                 FirebaseAuth.instance.signOut();
-                Navigator.push(
+                Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
                       builder: (context) => const Teacher_Siginin(),
