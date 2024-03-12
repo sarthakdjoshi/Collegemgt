@@ -39,6 +39,7 @@ class _Id_Card_TeacherState extends State<Id_Card_Teacher> {
                 Map<String, dynamic> data =
                     documents[index].data() as Map<String, dynamic>;
                 String documentId = documents[index].id;
+
                 return SingleChildScrollView(
                     child: Center(
                   child: Card(
@@ -49,7 +50,7 @@ class _Id_Card_TeacherState extends State<Id_Card_Teacher> {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           const Text(
-                            "College Name",
+                            "Swami Sahajanand College Of Compute Science",
                             style: TextStyle(fontSize: 24),
                           ),
                           CircleAvatar(
