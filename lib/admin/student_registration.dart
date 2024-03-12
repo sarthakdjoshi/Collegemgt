@@ -53,15 +53,27 @@ class _SecondState extends State<Second> {
   void createuser() async {
     String email = Email.text.toString();
     String password2 = password.text.toString();
-    UserCredential userCredential = await FirebaseAuth.instance
-        .createUserWithEmailAndPassword(email: email, password: password2);
-    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-        content: Text("Student Created"), duration: Duration(seconds: 2)));
-    Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => const MyHomePage(),
-        ));
+    try {
+      UserCredential userCredential = await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(email: email, password: password2);
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text("Student Created"), duration: Duration(seconds: 2)));
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const MyHomePage(),
+          ));
+    } on FirebaseAuthException catch (e) {
+      print(e.code.toString());
+      if (e.code == "weak-password") {
+        ScaffoldMessenger.of(context)
+            .showSnackBar(const SnackBar(content: Text("Password Is Weak")));
+      }
+      if (e.code == "email-already-in-use") {
+        ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text("Email Is Already In USed")));
+      }
+    }
   }
 
   void register() async {

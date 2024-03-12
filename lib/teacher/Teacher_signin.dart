@@ -38,6 +38,13 @@ class _Teacher_SigininState extends State<Teacher_Siginin> {
           duration: Duration(seconds: 2),
         ));
       }
+      if (e.code.toString() == "network-request-failed") {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text("Internet Connection Is Not Found"),
+          duration: Duration(seconds: 2),
+        ));
+      }
+
       if (e.code.toString() == "channel-error") {
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
           content: Text("Email or Password Must Be Filled"),

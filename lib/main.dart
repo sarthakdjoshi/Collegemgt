@@ -97,6 +97,12 @@ class _MyHomePageState extends State<MyHomePage> {
           duration: Duration(seconds: 2),
         ));
       }
+      if (e.code.toString() == "network-request-failed") {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text("Internet Connection Is Not Found"),
+          duration: Duration(seconds: 2),
+        ));
+      }
     }
   }
 
@@ -245,6 +251,24 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ],
         )),
+      ),
+      bottomNavigationBar: const BottomAppBar(
+        color: Colors.indigo,
+        child: SizedBox(
+          height: 30.0,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'Developed By Sarthak Joshi',
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 25.0,
+                    fontWeight: FontWeight.w500),
+              )
+            ],
+          ),
+        ),
       ),
     );
   }

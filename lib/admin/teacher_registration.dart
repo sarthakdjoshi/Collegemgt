@@ -52,16 +52,28 @@ class _Teacher_regState extends State<Teacher_reg> {
   void createuser() async {
     String email2 = email.text.toString();
     String password2 = pass.text.toString();
-    UserCredential userCredential = await FirebaseAuth.instance
-        .createUserWithEmailAndPassword(email: email2, password: password2);
-    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-        content: Text("User Account  Created"),
-        duration: Duration(seconds: 2)));
-    Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => const MyHomePage(),
-        ));
+    try {
+      UserCredential userCredential = await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(email: email2, password: password2);
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text("User Account  Created"),
+          duration: Duration(seconds: 2)));
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const MyHomePage(),
+          ));
+    } on FirebaseAuthException catch (e) {
+      print(e.code.toString());
+      if (e.code == "weak-password") {
+        ScaffoldMessenger.of(context)
+            .showSnackBar(const SnackBar(content: Text("Password Is Weak")));
+      }
+      if (e.code == "email-already-in-use") {
+        ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text("Email Is Already In USed")));
+      }
+    }
   }
 
   void register() async {
