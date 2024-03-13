@@ -15,7 +15,7 @@ class _Id_CardState extends State<Id_Card> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Id Card"),
+        title: const Text("Student Id Card"),
         centerTitle: true,
         backgroundColor: Colors.indigoAccent,
       ),
