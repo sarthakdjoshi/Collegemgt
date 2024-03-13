@@ -105,168 +105,190 @@ class _MyHomePageState extends State<MyHomePage> {
       }
     }
   }
-
+  Future<bool> _onWillPop() async {
+    return (await showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Are You Sure?'),
+        content: const Text('Do You Want To Exit The App?'),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(false),
+            child: const Text('No'),
+          ),
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(true),
+            child: const Text('Yes'),
+          ),
+        ],
+      ),
+    )) ??
+        false;
+  }
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: const Text("Login"),
-        centerTitle: true,
-      ),
-      body: SingleChildScrollView(
-        child: Center(
-            child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Text(
-              "Student Login Here",
-              style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.w900,
-                  color: Colors.cyanAccent),
-            ),
-            SizedBox(height: 200, child: Image.asset("assets/images/l-1.jpg")),
-            TextField(
-              controller: e_mail,
-              decoration: const InputDecoration(
-                label: Text("Enter Email"),
-                prefixIcon: Icon(Icons.email),
-                prefixIconColor: Colors.indigoAccent,
+    return WillPopScope(
+      onWillPop: _onWillPop,
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+          title: const Text("Login"),
+          centerTitle: true,
+        ),
+        body: SingleChildScrollView(
+          child: Center(
+              child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text(
+                "Student Login Here",
+                style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.w900,
+                    color: Colors.cyanAccent),
               ),
-            ),
-            TextField(
-              controller: pass,
-              obscureText: abc,
-              obscuringCharacter: "*",
-              decoration: InputDecoration(
-                label: const Text("Enter Password"),
-                prefixIcon: IconButton(
-                  onPressed: () {
-                    abc = !abc;
-                    setState(() {});
-                  },
-                  icon: const Icon(Icons.password),
+              SizedBox(height: 200, child: Image.asset("assets/images/l-1.jpg")),
+              TextField(
+                controller: e_mail,
+                decoration: const InputDecoration(
+                  label: Text("Enter Email"),
+                  prefixIcon: Icon(Icons.email),
+                  prefixIconColor: Colors.indigoAccent,
                 ),
-                prefixIconColor: Colors.cyan,
               ),
-            ),
-            CupertinoButton(
-                child: const Text("Clear"),
-                onPressed: () {
-                  e_mail.clear();
-                  pass.clear();
-                }),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-              child: SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
+              TextField(
+                controller: pass,
+                obscureText: abc,
+                obscuringCharacter: "*",
+                decoration: InputDecoration(
+                  label: const Text("Enter Password"),
+                  prefixIcon: IconButton(
                     onPressed: () {
-                      if (e_mail.text.toString() == "admin" &&
-                          pass.text.toString() == "admin") {
-                        Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const Admin_Panel(),
-                            ));
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text("Admin Logged in"),
-                            duration: Duration(seconds: 2),
-                          ),
-                        );
-                      } else if (e_mail.text.toString() == "fees" &&
-                          pass.text.toString() == "fees") {
-                        Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const Fees_panel(),
-                            ));
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text("Fees_Department Logged in"),
-                            duration: Duration(seconds: 2),
-                          ),
-                        );
-                      } else {
-                        ScaffoldMessenger.of(context)
-                            .showSnackBar(const SnackBar(
-                          content: Text("Please Wait"),
-                          duration: Duration(seconds: 2),
-                        ));
-                        singin();
-                      }
+                      abc = !abc;
+                      setState(() {});
                     },
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.indigo,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10))),
-                    child: const Text(
-                      "Login",
-                      style: TextStyle(color: Colors.white),
-                    )),
+                    icon: const Icon(Icons.password),
+                  ),
+                  prefixIconColor: Colors.cyan,
+                ),
               ),
-            ),
-            Row(
-              children: [
-                CupertinoButton(
-                    onPressed: () {
-                      try {
-                        if (e_mail.text == "") {
-                          ScaffoldMessenger.of(context)
-                              .showSnackBar(const SnackBar(
-                            content: Text("Enter Email "),
-                            duration: Duration(seconds: 2),
-                          ));
-                        } else {
-                          print(e_mail.text.toString());
-                          String email = e_mail.text.toString();
-                          FirebaseAuth.instance
-                              .sendPasswordResetEmail(email: email);
-                          ScaffoldMessenger.of(context)
-                              .showSnackBar(const SnackBar(
-                            content: Text("Reset Link Has Sent To Your Email"),
-                            duration: Duration(seconds: 2),
-                          ));
-                        }
-                      } on FirebaseAuthException catch (e) {
-                        print(e.code.toString());
-                      }
-                    },
-                    child: const Text("Forgot Password")),
-                Expanded(
-                  child: CupertinoButton(
-                      child: const Text("Teacher Login"),
+              CupertinoButton(
+                  child: const Text("Clear"),
+                  onPressed: () {
+                    e_mail.clear();
+                    pass.clear();
+                  }),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                child: SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
                       onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const Teacher_Siginin(),
+                        if (e_mail.text.toString() == "admin" &&
+                            pass.text.toString() == "admin") {
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const Admin_Panel(),
+                              ));
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text("Admin Logged in"),
+                              duration: Duration(seconds: 2),
+                            ),
+                          );
+                        } else if (e_mail.text.toString() == "fees" &&
+                            pass.text.toString() == "fees") {
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const Fees_panel(),
+                              ));
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text("Fees_Department Logged in"),
+                              duration: Duration(seconds: 2),
+                            ),
+                          );
+                        } else {
+                          ScaffoldMessenger.of(context)
+                              .showSnackBar(const SnackBar(
+                            content: Text("Please Wait"),
+                            duration: Duration(seconds: 2),
+                          ));
+                          singin();
+                        }
+                      },
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.indigo,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10))),
+                      child: const Text(
+                        "Login",
+                        style: TextStyle(color: Colors.white),
+                      )),
+                ),
+              ),
+              Row(
+                children: [
+                  CupertinoButton(
+                      onPressed: () {
+                        try {
+                          if (e_mail.text == "") {
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(const SnackBar(
+                              content: Text("Enter Email "),
+                              duration: Duration(seconds: 2),
                             ));
-                      }),
+                          } else {
+                            print(e_mail.text.toString());
+                            String email = e_mail.text.toString();
+                            FirebaseAuth.instance
+                                .sendPasswordResetEmail(email: email);
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(const SnackBar(
+                              content: Text("Reset Link Has Sent To Your Email"),
+                              duration: Duration(seconds: 2),
+                            ));
+                          }
+                        } on FirebaseAuthException catch (e) {
+                          print(e.code.toString());
+                        }
+                      },
+                      child: const Text("Forgot Password")),
+                  Expanded(
+                    child: CupertinoButton(
+                        child: const Text("Teacher Login"),
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const Teacher_Siginin(),
+                              ));
+                        }),
+                  )
+                ],
+              ),
+            ],
+          )),
+        ),
+        bottomNavigationBar: const BottomAppBar(
+          color: Colors.indigo,
+          child: SizedBox(
+            height: 30.0,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'Developed By Sarthak Joshi',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 25.0,
+                      fontWeight: FontWeight.w500),
                 )
               ],
             ),
-          ],
-        )),
-      ),
-      bottomNavigationBar: const BottomAppBar(
-        color: Colors.indigo,
-        child: SizedBox(
-          height: 30.0,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'Developed By Sarthak Joshi',
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 25.0,
-                    fontWeight: FontWeight.w500),
-              )
-            ],
           ),
         ),
       ),

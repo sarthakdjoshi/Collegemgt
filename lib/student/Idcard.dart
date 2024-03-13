@@ -53,7 +53,7 @@ class _Id_CardState extends State<Id_Card> {
                             textAlign: TextAlign.center,
                             style: TextStyle(fontSize: 24),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
                           CircleAvatar(
