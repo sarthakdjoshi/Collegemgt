@@ -317,16 +317,16 @@ class _Teacher_regState extends State<Teacher_reg> {
                       ),
                       ElevatedButton(
                         onPressed: () async {
-                          DateTime? picked2 = await showDatePicker(
+                          DateTime? picked = await showDatePicker(
                               context: context,
                               firstDate: DateTime(2000),
                               lastDate: DateTime.now());
-                          if (picked2 != null) {
+                          if (picked != null) {
                             doj =
-                                "${picked2.day.toString()}-${picked2.month.toString()}-${picked2.year.toString()}";
+                                "${picked.day.toString()}-${picked.month.toString()}-${picked.year.toString()}";
                             setState(() {});
                           } else {
-                            doj = "Select Date Of Join";
+                            doj = "Select Date Of Birth";
                             setState(() {});
                           }
                         },

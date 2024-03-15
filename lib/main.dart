@@ -105,26 +105,28 @@ class _MyHomePageState extends State<MyHomePage> {
       }
     }
   }
+
   Future<bool> _onWillPop() async {
     return (await showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: const Text('Are You Sure?'),
-        content: const Text('Do You Want To Exit The App?'),
-        actions: <Widget>[
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(false),
-            child: const Text('No'),
+          context: context,
+          builder: (context) => AlertDialog(
+            title: const Text('Are You Sure?'),
+            content: const Text('Do You Want To Exit The App?'),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () => Navigator.of(context).pop(false),
+                child: const Text('No'),
+              ),
+              TextButton(
+                onPressed: () => Navigator.of(context).pop(true),
+                child: const Text('Yes'),
+              ),
+            ],
           ),
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(true),
-            child: const Text('Yes'),
-          ),
-        ],
-      ),
-    )) ??
+        )) ??
         false;
   }
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -148,7 +150,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     fontWeight: FontWeight.w900,
                     color: Colors.cyanAccent),
               ),
-              SizedBox(height: 200, child: Image.asset("assets/images/l-1.jpg")),
+              SizedBox(
+                  height: 200, child: Image.asset("assets/images/l-1.jpg")),
               TextField(
                 controller: e_mail,
                 decoration: const InputDecoration(
@@ -180,7 +183,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     pass.clear();
                   }),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                 child: SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
@@ -248,7 +252,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                 .sendPasswordResetEmail(email: email);
                             ScaffoldMessenger.of(context)
                                 .showSnackBar(const SnackBar(
-                              content: Text("Reset Link Has Sent To Your Email"),
+                              content:
+                                  Text("Reset Link Has Sent To Your Email"),
                               duration: Duration(seconds: 2),
                             ));
                           }

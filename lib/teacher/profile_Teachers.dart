@@ -38,27 +38,28 @@ class _Profile_TeacherState extends State<Profile_Teacher> {
       print("Error sending email verification: $e");
     }
   }
+
   Future<bool> _onWillPop() async {
     return (await showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: const Text('Are You Sure?'),
-        content: const Text('Do You Want To Logout?'),
-        actions: <Widget>[
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(false),
-            child: const Text('No'),
+          context: context,
+          builder: (context) => AlertDialog(
+            title: const Text('Are You Sure?'),
+            content: const Text('Do You Want To Logout?'),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () => Navigator.of(context).pop(false),
+                child: const Text('No'),
+              ),
+              TextButton(
+                onPressed: () {
+                  FirebaseAuth.instance.signOut();
+                  Navigator.of(context).pop(true);
+                },
+                child: const Text('Yes'),
+              ),
+            ],
           ),
-          TextButton(
-            onPressed: () {
-              FirebaseAuth.instance.signOut();
-              Navigator.of(context).pop(true);
-            },
-            child: const Text('Yes'),
-          ),
-        ],
-      ),
-    )) ??
+        )) ??
         false;
   }
 
@@ -337,7 +338,8 @@ class _Profile_TeacherState extends State<Profile_Teacher> {
                                               ?.emailVerified !=
                                           true)
                                       ? CupertinoButton(
-                                          child: const Text("Verify Your Email"),
+                                          child:
+                                              const Text("Verify Your Email"),
                                           onPressed: () {
                                             sendEmailVerification();
                                             ScaffoldMessenger.of(context)

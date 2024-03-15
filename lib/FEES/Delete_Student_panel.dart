@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:cms/FEES/Transfer_Certificate.dart';
+import 'package:cms/FEES/Delete_Student.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -21,7 +21,7 @@ class _Transfer_certificate_panelState
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Transfer Certificate "),
+        title: const Text("Student List "),
         centerTitle: true,
         backgroundColor: Colors.orange,
       ),
@@ -105,7 +105,7 @@ class _Transfer_certificate_panelState
                                     print(e.toString());
                                   }
                                 },
-                                child: const Text("Transfer Certificate"),
+                                child: const Text("Delete"),
                               ),
                             ),
                           ),

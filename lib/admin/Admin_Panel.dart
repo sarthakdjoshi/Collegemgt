@@ -2,6 +2,7 @@ import 'package:cms/FEES/Fees_Panel.dart';
 import 'package:cms/admin/Sem_progress.dart';
 import 'package:cms/admin/Show_Student.dart';
 import 'package:cms/admin/Show_Teachers.dart';
+import 'package:cms/admin/Teacher_Delete_Panel.dart';
 import 'package:cms/admin/student_registration.dart';
 import 'package:cms/admin/teacher_registration.dart';
 import 'package:flutter/cupertino.dart';
@@ -145,6 +146,37 @@ class _Admin_PanelState extends State<Admin_Panel> {
                               ),
                               Text(
                                 "Student Fees",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(fontSize: 25),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: SizedBox(
+                        height: 180,
+                        width: 100,
+                        child: CupertinoButton(
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => Teacher_Delete(),
+                                ));
+                          },
+                          child: const Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              FaIcon(
+                                FontAwesomeIcons.trash,
+                                size: 65,
+                                color: Colors.red,
+                              ),
+                              Text(
+                                "Delete Teacher",
                                 textAlign: TextAlign.center,
                                 style: TextStyle(fontSize: 25),
                               ),

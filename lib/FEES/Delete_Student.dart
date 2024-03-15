@@ -1,4 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cms/FEES/Delete_Student_panel.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -13,13 +15,12 @@ class Transfer_Certificate extends StatefulWidget {
 
 class _Transfer_CertificateState extends State<Transfer_Certificate> {
   CollectionReference users = FirebaseFirestore.instance.collection('Students');
-  var abc = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Transfer Certificate "),
+        title: const Text("Delete Student "),
         centerTitle: true,
         backgroundColor: Colors.orange,
       ),
@@ -43,7 +44,6 @@ class _Transfer_CertificateState extends State<Transfer_Certificate> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      const Text("Transfer Certificate"),
                       Image.network(
                         data['photo'],
                         width: 200,
@@ -201,33 +201,52 @@ class _Transfer_CertificateState extends State<Transfer_Certificate> {
                             TableCell(
                                 child: ElevatedButton(
                               onPressed: () {
-                                users.doc(documentId).delete();
-                                ScaffoldMessenger.of(context)
-                                    .showSnackBar(const SnackBar(
-                                  content: Text("Student Deleted SuccessFully"),
-                                  duration: Duration(seconds: 2),
-                                ));
-                                abc = true;
-                                setState(() {});
+                                showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      title: const Text("Confirm TO Delete"),
+                                      content: const Text(
+                                          'Are you sure you want to delete this student?'),
+                                      actions: [
+                                        TextButton(
+                                            onPressed: () {
+                                              Navigator.of(context).pop();
+                                            },
+                                            child: const Text("NO")),
+                                        TextButton(
+                                            onPressed: () {
+                                              users
+                                                  .doc(documentId)
+                                                  .delete()
+                                                  .then((value) async {
+                                                User? user = FirebaseAuth
+                                                    .instance.currentUser;
+                                                await user?.delete();
+                                              });
+                                              Navigator.of(context).pop();
+                                              ScaffoldMessenger.of(context)
+                                                  .showSnackBar(
+                                                SnackBar(
+                                                  content: Text(
+                                                    "${data['name']} was Deleted",
+                                                  ),
+                                                  duration: const Duration(
+                                                      seconds: 2),
+                                                ),
+                                              );
+                                            },
+                                            child: const Text("Yes")),
+                                      ],
+                                    );
+                                  },
+                                );
                               },
                               child: const Text("Delete"),
                             )),
                           ]),
                         ],
                       ),
-                      Visibility(
-                        visible: abc,
-                        child: ElevatedButton(
-                            onPressed: () {},
-                            child: const Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                FaIcon(FontAwesomeIcons.download),
-                                Text("Download Transfer Certificate")
-                              ],
-                            )),
-                      )
                     ],
                   ),
                 );

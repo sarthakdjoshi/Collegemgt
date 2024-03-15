@@ -1,7 +1,8 @@
 import 'package:cms/FEES/Mobile_Pass_Panel.dart';
 import 'package:cms/FEES/Stud_fees.dart';
 import 'package:cms/FEES/Student_bonafied_panel.dart';
-import 'package:cms/FEES/Transfer_Certificate_panel.dart';
+import 'package:cms/FEES/Delete_Student_panel.dart';
+import 'package:cms/main.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -21,6 +22,17 @@ class _Fees_panelState extends State<Fees_panel> {
         title: const Text("Fees Managemnet"),
         centerTitle: true,
         backgroundColor: Colors.red,
+        actions: [
+          IconButton(
+              onPressed: () {
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => MyHomePage(),
+                    ));
+              },
+              icon: Icon(Icons.logout))
+        ],
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -115,12 +127,12 @@ class _Fees_panelState extends State<Fees_panel> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         FaIcon(
-                          FontAwesomeIcons.moneyBillTransfer,
+                          FontAwesomeIcons.trash,
                           size: 65,
                           color: Colors.red,
                         ),
                         Text(
-                          "Transfer Certificate",
+                          "Delete Student",
                           textAlign: TextAlign.center,
                           style: TextStyle(fontSize: 25),
                         ),

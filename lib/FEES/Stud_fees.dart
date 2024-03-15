@@ -91,7 +91,6 @@ class _Stud_feesState extends State<Stud_fees> {
                                     if (data['fees'] == "unpaid") {
                                       await users.doc(documentId).update({
                                         'fees': 'paid',
-                                        'mobilepass': 'yes',
                                       });
                                       print('Fees updated successfully!');
                                     } else if (data['fees'] == "paid") {
