@@ -3,9 +3,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../teacher/profile_Teachers.dart';
 
 class Teacher_Delete extends StatefulWidget {
+  const Teacher_Delete({super.key});
+
   @override
   State<Teacher_Delete> createState() => _Teacher_DeleteState();
 }
@@ -19,7 +20,7 @@ class _Teacher_DeleteState extends State<Teacher_Delete> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Teacher List"),
+        title: const Text("Teacher List"),
         backgroundColor: Colors.indigo,
         centerTitle: true,
       ),

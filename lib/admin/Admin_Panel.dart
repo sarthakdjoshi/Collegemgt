@@ -163,7 +163,7 @@ class _Admin_PanelState extends State<Admin_Panel> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => Teacher_Delete(),
+                                  builder: (context) => const Teacher_Delete(),
                                 ));
                           },
                           child: const Column(
