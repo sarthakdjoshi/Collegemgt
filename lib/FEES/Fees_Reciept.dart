@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class FeesReceipt extends StatefulWidget {
   final String u_email;
 
-  const FeesReceipt(this.u_email, {Key? key}) : super(key: key);
+  const FeesReceipt(this.u_email, {super.key});
 
   @override
   State<FeesReceipt> createState() => _FeesReceiptState();
