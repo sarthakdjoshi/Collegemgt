@@ -52,6 +52,7 @@ class _Profile_StudState extends State<Profile_Stud> {
               TextButton(
                 onPressed: () {
                   FirebaseAuth.instance.signOut();
+                  Navigator.of(context).popUntil((route) => route.isFirst);
                   Navigator.of(context).pop(true);
                 },
                 child: const Text('Yes'),

@@ -69,6 +69,8 @@ class _MyHomePageState extends State<MyHomePage> {
           MaterialPageRoute(
             builder: (context) => Profile_Stud(email),
           ));
+      Navigator.of(context).popUntil((route) => route.isFirst);
+
       ScaffoldMessenger.of(context)
           .showSnackBar(const SnackBar(content: Text("Student Loggedin")));
     } on FirebaseAuthException catch (e) {
@@ -196,6 +198,8 @@ class _MyHomePageState extends State<MyHomePage> {
                               MaterialPageRoute(
                                 builder: (context) => const Admin_Panel(),
                               ));
+                          Navigator.of(context).popUntil((route) => route.isFirst);
+
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
                               content: Text("Admin Logged in"),
@@ -204,11 +208,14 @@ class _MyHomePageState extends State<MyHomePage> {
                           );
                         } else if (e_mail.text.toString() == "fees" &&
                             pass.text.toString() == "fees") {
+
                           Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
                                 builder: (context) => const Fees_panel(),
                               ));
+                          Navigator.of(context).popUntil((route) => route.isFirst);
+
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
                               content: Text("Fees_Department Logged in"),

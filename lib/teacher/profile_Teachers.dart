@@ -53,6 +53,7 @@ class _Profile_TeacherState extends State<Profile_Teacher> {
               TextButton(
                 onPressed: () {
                   FirebaseAuth.instance.signOut();
+                  Navigator.of(context).popUntil((route) => route.isFirst);
                   Navigator.of(context).pop(true);
                 },
                 child: const Text('Yes'),

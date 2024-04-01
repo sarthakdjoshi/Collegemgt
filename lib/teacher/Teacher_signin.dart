@@ -28,6 +28,8 @@ class _Teacher_SigininState extends State<Teacher_Siginin> {
           MaterialPageRoute(
             builder: (context) => Profile_Teacher(email),
           ));
+      Navigator.of(context).popUntil((route) => route.isFirst);
+
       ScaffoldMessenger.of(context)
           .showSnackBar(const SnackBar(content: Text("Teacher Loggedin")));
     } on FirebaseAuthException catch (e) {
