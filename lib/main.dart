@@ -69,8 +69,6 @@ class _MyHomePageState extends State<MyHomePage> {
           MaterialPageRoute(
             builder: (context) => Profile_Stud(email),
           ));
-      Navigator.of(context).popUntil((route) => route.isFirst);
-
       ScaffoldMessenger.of(context)
           .showSnackBar(const SnackBar(content: Text("Student Loggedin")));
     } on FirebaseAuthException catch (e) {
