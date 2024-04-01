@@ -198,7 +198,8 @@ class _MyHomePageState extends State<MyHomePage> {
                               MaterialPageRoute(
                                 builder: (context) => const Admin_Panel(),
                               ));
-                          Navigator.of(context).popUntil((route) => route.isFirst);
+                          Navigator.of(context)
+                              .popUntil((route) => route.isFirst);
 
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
@@ -208,13 +209,13 @@ class _MyHomePageState extends State<MyHomePage> {
                           );
                         } else if (e_mail.text.toString() == "fees" &&
                             pass.text.toString() == "fees") {
-
                           Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
                                 builder: (context) => const Fees_panel(),
                               ));
-                          Navigator.of(context).popUntil((route) => route.isFirst);
+                          Navigator.of(context)
+                              .popUntil((route) => route.isFirst);
 
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
