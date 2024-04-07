@@ -93,7 +93,8 @@ class _Profile_StudState extends State<Profile_Stud> {
               ),
               InkWell(
                 onTap: () {
-                  Navigator.push(
+                  Navigator.pop(context);
+                  Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
                         builder: (context) => const Upload_Assignmnet(),

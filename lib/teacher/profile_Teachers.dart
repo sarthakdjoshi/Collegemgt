@@ -94,7 +94,8 @@ class _Profile_TeacherState extends State<Profile_Teacher> {
               ),
               InkWell(
                 onTap: () {
-                  Navigator.push(
+                  Navigator.pop(context);
+                  Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
                         builder: (context) => const Show_Student_attendance(),
