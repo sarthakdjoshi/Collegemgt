@@ -24,7 +24,6 @@ class _Profile_TeacherState extends State<Profile_Teacher> {
   var teacherof = "";
   var icon = const Icon(Icons.verified);
 
-  @override
   void sendEmailVerification() async {
     try {
       User? user = FirebaseAuth.instance.currentUser;
@@ -94,7 +93,6 @@ class _Profile_TeacherState extends State<Profile_Teacher> {
               ),
               InkWell(
                 onTap: () {
-                  Navigator.pop(context);
                   Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(

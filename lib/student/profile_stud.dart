@@ -93,7 +93,6 @@ class _Profile_StudState extends State<Profile_Stud> {
               ),
               InkWell(
                 onTap: () {
-                  Navigator.pop(context);
                   Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(

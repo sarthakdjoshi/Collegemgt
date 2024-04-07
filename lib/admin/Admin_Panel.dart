@@ -36,7 +36,6 @@ class _Admin_PanelState extends State<Admin_Panel> {
                 ),
                 IconButton(
                     onPressed: () {
-                      Navigator.pop(context);
                       Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
