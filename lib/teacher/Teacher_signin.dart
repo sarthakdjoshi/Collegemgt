@@ -92,6 +92,7 @@ class _Teacher_SigininState extends State<Teacher_Siginin> {
                   height: 200, child: Image.asset("assets/images/teacher.png")),
               TextField(
                 controller: e_mail,
+                keyboardType: TextInputType.emailAddress,
                 decoration: const InputDecoration(
                   hintText: "Enter Email",
                   prefixIcon: Icon(Icons.email),

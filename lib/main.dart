@@ -154,6 +154,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   height: 200, child: Image.asset("assets/images/l-1.jpg")),
               TextField(
                 controller: e_mail,
+                keyboardType: TextInputType.emailAddress,
                 decoration: const InputDecoration(
                   label: Text("Enter Email"),
                   prefixIcon: Icon(Icons.email),
@@ -272,7 +273,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: CupertinoButton(
                         child: const Text("Teacher Login"),
                         onPressed: () {
-                          Navigator.push(
+                          Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
                                 builder: (context) => const Teacher_Siginin(),
