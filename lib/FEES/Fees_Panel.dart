@@ -25,7 +25,6 @@ class _Fees_panelState extends State<Fees_panel> {
         actions: [
           IconButton(
               onPressed: () {
-                Navigator.pop(context);
                 Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
