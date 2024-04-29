@@ -197,10 +197,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               MaterialPageRoute(
                                 builder: (context) => const Admin_Panel(),
                               ));
-                          Navigator.of(context)
-                              .popUntil((route) => route.isFirst);
-
-                          ScaffoldMessenger.of(context).showSnackBar(
+                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
                               content: Text("Admin Logged in"),
                               duration: Duration(seconds: 2),
