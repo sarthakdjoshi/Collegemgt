@@ -1,9 +1,9 @@
 import 'dart:ui';
-import 'package:cms/FEES/Fees_Panel.dart';
-import 'package:cms/admin/Admin_Panel.dart';
-import 'package:cms/splash%20Screen.dart';
-import 'package:cms/student/profile_stud.dart';
-import 'package:cms/teacher/Teacher_signin.dart';
+import 'package:cms_student/FEES/Fees_Panel.dart';
+import 'package:cms_student/admin/Admin_Panel.dart';
+import 'package:cms_student/splash%20Screen.dart';
+import 'package:cms_student/student/profile_stud.dart';
+import 'package:cms_student/teacher/Teacher_signin.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

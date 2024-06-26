@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:cms/teacher/Idcard_teacher.dart';
-import 'package:cms/teacher/Show_Student_attendance.dart';
-import 'package:cms/teacher/Teacher_signin.dart';
-import 'package:cms/teacher/Upload_Assignmnet_Teacher.dart';
-import 'package:cms/teacher/attendance_report.dart';
+import 'package:cms_student/teacher/Idcard_teacher.dart';
+import 'package:cms_student/teacher/Show_Student_attendance.dart';
+import 'package:cms_student/teacher/Teacher_signin.dart';
+import 'package:cms_student/teacher/Upload_Assignmnet_Teacher.dart';
+import 'package:cms_student/teacher/attendance_report.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

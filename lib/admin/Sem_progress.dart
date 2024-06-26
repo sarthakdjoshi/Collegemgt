@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:cms/admin/sem_prg.dart';
+import 'package:cms_student/admin/sem_prg.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:cms/student/profile_stud.dart';
+import 'package:cms_student/student/profile_stud.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

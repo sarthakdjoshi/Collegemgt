@@ -1,8 +1,8 @@
-import 'package:cms/FEES/Mobile_Pass_Panel.dart';
-import 'package:cms/FEES/Stud_fees.dart';
-import 'package:cms/FEES/Student_bonafied_panel.dart';
-import 'package:cms/FEES/Delete_Student_panel.dart';
-import 'package:cms/main.dart';
+import 'package:cms_student/FEES/Mobile_Pass_Panel.dart';
+import 'package:cms_student/FEES/Stud_fees.dart';
+import 'package:cms_student/FEES/Student_bonafied_panel.dart';
+import 'package:cms_student/FEES/Delete_Student_panel.dart';
+import 'package:cms_student/main.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';

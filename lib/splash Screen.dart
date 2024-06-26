@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:cms/main.dart';
+import 'package:cms_student/main.dart';
 import 'package:flutter/material.dart';
 
 class Splash extends StatefulWidget {

@@ -1,4 +1,4 @@
-import 'package:cms/teacher/profile_Teachers.dart';
+import 'package:cms_student/teacher/profile_Teachers.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

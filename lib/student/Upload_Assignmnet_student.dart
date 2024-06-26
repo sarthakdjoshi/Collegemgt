@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:cms/student/Pdfview.dart';
+import 'package:cms_student/student/Pdfview.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

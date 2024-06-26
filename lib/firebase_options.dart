@@ -17,10 +17,7 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      throw UnsupportedError(
-        'DefaultFirebaseOptions have not been configured for web - '
-        'you can reconfigure this by running the FlutterFire CLI again.',
-      );
+      return web;
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -36,10 +33,7 @@ class DefaultFirebaseOptions {
           'you can reconfigure this by running the FlutterFire CLI again.',
         );
       case TargetPlatform.windows:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for windows - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return windows;
       case TargetPlatform.linux:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for linux - '
@@ -60,4 +54,27 @@ class DefaultFirebaseOptions {
     databaseURL: 'https://fir-pratice-96ab4-default-rtdb.firebaseio.com',
     storageBucket: 'fir-pratice-96ab4.appspot.com',
   );
+
+  static const FirebaseOptions web = FirebaseOptions(
+    apiKey: 'AIzaSyD49iXNUwyBH3zHc_lAhZMHSrGeYi-uBAw',
+    appId: '1:832777697852:web:5b9ac612500dd53a7fa139',
+    messagingSenderId: '832777697852',
+    projectId: 'fir-pratice-96ab4',
+    authDomain: 'fir-pratice-96ab4.firebaseapp.com',
+    databaseURL: 'https://fir-pratice-96ab4-default-rtdb.firebaseio.com',
+    storageBucket: 'fir-pratice-96ab4.appspot.com',
+    measurementId: 'G-ED91JSW04W',
+  );
+
+  static const FirebaseOptions windows = FirebaseOptions(
+    apiKey: 'AIzaSyD49iXNUwyBH3zHc_lAhZMHSrGeYi-uBAw',
+    appId: '1:832777697852:web:f89823e1a40bbf657fa139',
+    messagingSenderId: '832777697852',
+    projectId: 'fir-pratice-96ab4',
+    authDomain: 'fir-pratice-96ab4.firebaseapp.com',
+    databaseURL: 'https://fir-pratice-96ab4-default-rtdb.firebaseio.com',
+    storageBucket: 'fir-pratice-96ab4.appspot.com',
+    measurementId: 'G-RRFWSK53LM',
+  );
+
 }

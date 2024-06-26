@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:cms/FEES/Fees_Reciept.dart';
-import 'package:cms/FEES/Mobile_Pass.dart';
-import 'package:cms/student/Idcard.dart';
-import 'package:cms/student/Upload_Assignmnet_student.dart';
+import 'package:cms_student/FEES/Fees_Reciept.dart';
+import 'package:cms_student/FEES/Mobile_Pass.dart';
+import 'package:cms_student/student/Idcard.dart';
+import 'package:cms_student/student/Upload_Assignmnet_student.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
