@@ -29,9 +29,9 @@ class _Profile_TeacherState extends State<Profile_Teacher> {
       User? user = FirebaseAuth.instance.currentUser;
       if (user != null && !user.emailVerified) {
         await user.sendEmailVerification();
-        print("Email verification sent successfully");
+        print("Email verification Sent successfully");
       } else {
-        print("User is already verified or not signed in");
+        print("User is already Verified or not signed in");
       }
     } catch (e) {
       print("Error sending email verification: $e");
