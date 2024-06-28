@@ -311,7 +311,7 @@ class _Profile_TeacherState extends State<Profile_Teacher> {
                                 child: (FirebaseAuth.instance.currentUser
                                             ?.emailVerified !=
                                         true)
-                                    ? CupertinoButton(
+                                  ? CupertinoButton(
                                         child:
                                             const Text("Verify Your Email"),
                                         onPressed: () {
@@ -322,6 +322,7 @@ class _Profile_TeacherState extends State<Profile_Teacher> {
                                                 "Email Verification Link Has Been Sent"),
                                             duration: Duration(seconds: 2),
                                           ));
+
                                         })
                                     : icon),
                           ]),

@@ -8,9 +8,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:832777697852:android:9eed2ab3224886097fa139",
+        "mobilesdk_app_id": "1:832777697852:android:c3c40efb792be76b7fa139",
         "android_client_info": {
-          "package_name": "com.example.collegemgt"
+          "package_name": "com.android.collegemgt"
         }
       },
       "oauth_client": [],

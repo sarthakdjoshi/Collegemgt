@@ -1,10 +1,8 @@
 import 'package:cms_student/FEES/Fees_Panel.dart';
-import 'package:cms_student/admin/Download_Teacher_Data.dart';
 import 'package:cms_student/admin/Sem_progress.dart';
 import 'package:cms_student/admin/Show_Student.dart';
 import 'package:cms_student/admin/Show_Teachers.dart';
 import 'package:cms_student/admin/Teacher_Delete_Panel.dart';
-import 'package:cms_student/admin/download_student_data.dart';
 import 'package:cms_student/admin/student_registration.dart';
 import 'package:cms_student/admin/teacher_registration.dart';
 import 'package:flutter/cupertino.dart';
@@ -313,74 +311,6 @@ class _Admin_PanelState extends State<Admin_Panel> {
                               ),
                               Text(
                                 "View Teachers",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontSize: 25,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                Row(
-                  children: [
-                    Expanded(
-                      child: SizedBox(
-                        height: 180,
-                        width: 100,
-                        child: CupertinoButton(
-                          onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const DownloadStudentData()));
-                          },
-                          child: const Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              FaIcon(
-                                FontAwesomeIcons.usersRectangle,
-                                size: 65,
-                                color: Colors.red,
-                              ),
-                              Text(
-                                "Download Student Data",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(fontSize: 25),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      child: SizedBox(
-                        height: 180,
-                        width: 100,
-                        child: CupertinoButton(
-                          onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const Download_Teacher_Data()));
-                          },
-                          child: const Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              FaIcon(
-                                FontAwesomeIcons.users,
-                                size: 65,
-                                color: Colors.red,
-                              ),
-                              Text(
-                                "Download Teachers Data",
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   fontSize: 25,
