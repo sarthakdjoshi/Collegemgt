@@ -1,9 +1,6 @@
 import 'dart:ui';
-import 'package:cms_student/FEES/Fees_Panel.dart';
-import 'package:cms_student/admin/Admin_Panel.dart';
 import 'package:cms_student/splash%20Screen.dart';
 import 'package:cms_student/student/profile_stud.dart';
-import 'package:cms_student/teacher/Teacher_signin.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -190,45 +187,15 @@ class _MyHomePageState extends State<MyHomePage> {
                   width: double.infinity,
                   child: ElevatedButton(
                       onPressed: () {
-                        if (e_mail.text.toString() == "admin" &&
-                            pass.text.toString() == "admin") {
-                          Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const Admin_Panel(),
-                              ));
-                           ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                              content: Text("Admin Logged in"),
-                              duration: Duration(seconds: 2),
-                            ),
-                          );
-                        } else if (e_mail.text.toString() == "fees" &&
-                            pass.text.toString() == "fees") {
-                          Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const Fees_panel(),
-                              ));
-                          Navigator.of(context)
-                              .popUntil((route) => route.isFirst);
 
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                              content: Text("Fees_Department Logged in"),
-                              duration: Duration(seconds: 2),
-                            ),
-                          );
-                        } else {
                           ScaffoldMessenger.of(context)
                               .showSnackBar(const SnackBar(
                             content: Text("Please Wait"),
                             duration: Duration(seconds: 2),
                           ));
                           singin();
-                        }
-                      },
-                      style: ElevatedButton.styleFrom(
+                        },
+                                           style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.indigo,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10))),
@@ -268,13 +235,9 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: const Text("Forgot Password")),
                   Expanded(
                     child: CupertinoButton(
-                        child: const Text("Teacher Login"),
+                        child: const Text("Contact Admin"),
                         onPressed: () {
-                          Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const Teacher_Siginin(),
-                              ));
+
                         }),
                   )
                 ],

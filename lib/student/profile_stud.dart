@@ -1,6 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:cms_student/FEES/Fees_Reciept.dart';
-import 'package:cms_student/FEES/Mobile_Pass.dart';
 import 'package:cms_student/student/Idcard.dart';
 import 'package:cms_student/student/Upload_Assignmnet_student.dart';
 import 'package:flutter/cupertino.dart';
@@ -9,6 +7,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../main.dart';
+import 'Fees_Reciept.dart';
+import 'Mobile_Pass.dart';
 
 class Profile_Stud extends StatefulWidget {
   final String u_email;
