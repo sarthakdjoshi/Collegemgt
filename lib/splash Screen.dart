@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:cms_student/main.dart';
 import 'package:flutter/material.dart';
 
@@ -13,7 +12,6 @@ class Splash extends StatefulWidget {
 class _SplashState extends State<Splash> {
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     Timer(
         const Duration(seconds: 2),
