@@ -1,19 +1,18 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cms_student/Login_Page.dart';
 import 'package:cms_student/student/Idcard.dart';
 import 'package:cms_student/student/Upload_Assignmnet_student.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
-import '../main.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'Fees_Reciept.dart';
 import 'Mobile_Pass.dart';
 
 class Profile_Stud extends StatefulWidget {
-  final String u_email;
 
-  const Profile_Stud(this.u_email, {super.key});
+  const Profile_Stud({super.key});
 
   @override
   State<Profile_Stud> createState() => _Profile_StudState();
@@ -23,6 +22,12 @@ class _Profile_StudState extends State<Profile_Stud> {
   CollectionReference users = FirebaseFirestore.instance.collection('Students');
   var icon = const Icon(Icons.verified);
   var icon2 = const FaIcon(FontAwesomeIcons.cross);
+  var u_email;
+  void getdata()async{
+    var prefs=await SharedPreferences.getInstance();
+    u_email=prefs.get("email");
+  }
+
 
   void sendEmailVerification() async {
     try {
@@ -37,7 +42,12 @@ class _Profile_StudState extends State<Profile_Stud> {
       print("Error sending email verification: $e");
     }
   }
-
+@override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getdata();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,13 +55,16 @@ class _Profile_StudState extends State<Profile_Stud> {
       appBar: AppBar(
         actions: [
           IconButton(
-              onPressed: () {
+              onPressed: ()async {
                 FirebaseAuth.instance.signOut();
                 Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const MyHomePage(),
+                      builder: (context) => const Login_Page(),
                     ));
+                var prefs=await SharedPreferences.getInstance();
+               await prefs.clear();
+               ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Logout Succefully"),duration: Duration(seconds: 2),));
               },
               icon: const Icon(Icons.logout)),
         ],
@@ -63,7 +76,7 @@ class _Profile_StudState extends State<Profile_Stud> {
         child: ListView(
           children: [
             DrawerHeader(
-              child: Text("Welcome :-${widget.u_email.toString()}"),
+              child: Text("Welcome :-${u_email.toString()}"),
             ),
             InkWell(
               onTap: () {
@@ -89,7 +102,7 @@ class _Profile_StudState extends State<Profile_Stud> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => Id_Card(widget.u_email),
+                      builder: (context) => Id_Card(u_email),
                     ));
               },
               child: const Row(
@@ -107,9 +120,9 @@ class _Profile_StudState extends State<Profile_Stud> {
         ),
       ),
       body: FutureBuilder<QuerySnapshot>(
-        future: users.where("email", isEqualTo: widget.u_email).get(),
+        future: users.where("email", isEqualTo:u_email).get(),
         builder: (context, snapshot) {
-          print(widget.u_email);
+          print(u_email);
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
           } else if (snapshot.hasError) {
