@@ -58,7 +58,10 @@ dependencies:
   csv: ^6.0.0
   html: ^0.15.4
   shared_preferences: ^2.2.3
-
+flutter_icon:
+  image_path:"assets/images/icon.jpg"
+  android:true
+  ios:true
 dev_dependencies:
   flutter_test:
     sdk: flutter
